@@ -4,16 +4,17 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <filesystem>
 using namespace std;
 
-// #pragma  comment( lib, "../../bin/libamd.lib")
-// #pragma  comment( lib, "../../bin/libcamd.lib")	
-// #pragma  comment( lib, "../../bin/libccolamd.lib")
-// #pragma  comment( lib, "../../bin/libcholmod.lib")
-// #pragma  comment( lib, "../../bin/libcolamd.lib")
-// #pragma  comment( lib, "../../bin/libmetis_CHOLMOD.lib")
-// #pragma  comment( lib, "../../bin/libgoto2.lib")
-// #pragma  comment( lib, "../../bin/BA.lib")
+string get_current_dir(){
+	return filesystem::path(__FILE__).parent_path().string();
+}
+string get_dataset_path(){
+	filesystem::path current_dir=get_current_dir();
+	filesystem::path dataset_path =current_dir.parent_path() / "datasets/";
+	return dataset_path.string();
+}
 
 int main(int argc, char* argv[] )
 {
@@ -49,13 +50,14 @@ int main(int argc, char* argv[] )
 		pCheck = "SBA-GN";
 	}
 
-	string originalPath(dt);
-	size_t pos = originalPath.find_last_of("/\\");
-	string parentPath = (pos != string::npos) ? originalPath.substr(0, pos) : "";
+	string zsw(dt);
+	string data_file = get_dataset_path()+zsw;
+	size_t pos = data_file.find_last_of("/\\");
+	string parentPath = (pos != string::npos) ? data_file.substr(0, pos) : "";
 	string pP = parentPath + "/";
 	string p1 = pP + "Cam.txt";
 	string p2 = pP + "Feature.txt";
-	string p3 = pP + "XYZ1.txt";
+	string p3 = pP + "XYZ.txt";
 	string p4 = pP + "cal.txt";
 	//string p1 = pP + "Cam_new.txt";
 	//string p2 = pP + "Feature_new.txt";
