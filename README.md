@@ -30,7 +30,6 @@ cd PBA-V3
 cd ba
 mkdir build
 cmake -B build -S . -G "Visual Studio 17 2022" -A Win32
-
 cmake --build build --config Release
 ```
 
@@ -39,6 +38,5 @@ cmake --build build --config Release
 cd ../example
 mkdir build
 cmake -B build -S . -G "Visual Studio 17 2022" -A Win32
-
 cmake --build build --config Release
 ```
