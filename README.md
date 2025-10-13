@@ -40,6 +40,16 @@ mkdir build
 cmake -B build -S . -G "Visual Studio 17 2022" -A Win32
 cmake --build build --config Release
 ```
+
+### 4️⃣ Run the Demo
+```bash
+build/Release/example.exe
+```
+
+💡 Note:
+Make sure you have successfully built the ba library before running the demo.
+The executable file (example.exe) will be generated in the build/Release directory.
+
 # 🚀 Datasets
 
 ## 📥 Download
