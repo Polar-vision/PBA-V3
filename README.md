@@ -40,3 +40,28 @@ mkdir build
 cmake -B build -S . -G "Visual Studio 17 2022" -A Win32
 cmake --build build --config Release
 ```
+# 🚀 Datasets
+
+## 📥 Download
+
+You can download the datasets from the following links: https://drive.google.com/file/d/12bO4WTqCzckXtI5Bt97uV-gMgx5J_gyU/view?usp=sharing
+
+---
+## 🗂 Data Format
+
+Each dataset is organized in the following structure:
+
+- **Intrinsics (`cal.txt`)**  
+  Contains the camera intrinsic parameters: `fx`, `fy`, `cx`, `cy` for each camera.
+
+- **Extrinsics (`Cam.txt`)**  
+  Contains the camera poses, including Euler angles (`ez`, `ey`, `ex`), the perspective center `(Xc, Yc, Zc)`, and the camera ID.  
+  - `ez` : rotation around the z-axis  
+  - `ey` : rotation around the y-axis  
+  - `ex` : rotation around the x-axis
+
+- **3D Points (`XYZ.txt`)**  
+  Lists the 3D coordinates of the object points: `X`, `Y`, `Z`.
+
+- **Feature Tracks (`Feature.txt`)**  
+  Each line represents a feature track, including the number of views, the corresponding image indices, and the (u, v) coordinates in each image.
