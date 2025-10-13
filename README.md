@@ -44,7 +44,7 @@ cmake --build build --config Release
 
 ## 📥 Download
 
-You can download the datasets from the following links: https://drive.google.com/file/d/12bO4WTqCzckXtI5Bt97uV-gMgx5J_gyU/view?usp=sharing
+[Download Datasets](https://drive.google.com/file/d/12bO4WTqCzckXtI5Bt97uV-gMgx5J_gyU/view?usp=sharing)
 
 ---
 ## 🗂 Data Format
