@@ -43,8 +43,25 @@ cmake --build build --config Release
 # 🚀 Datasets
 
 ## 📥 Download
+You can download the dataset package from the following link:  
+[**Download Datasets**](https://drive.google.com/file/d/12bO4WTqCzckXtI5Bt97uV-gMgx5J_gyU/view?usp=sharing)
 
-[Download Datasets](https://drive.google.com/file/d/12bO4WTqCzckXtI5Bt97uV-gMgx5J_gyU/view?usp=sharing)
+After downloading, **extract the contents into the `PBA-V3/` directory**.
+
+The final folder structure should look like this:
+PBA-V3/
+├── datasets/
+│ ├── KD1-problem-83-48102/
+│ ├── ...
+├── src/
+├── CMakeLists.txt
+└── ...
+
+> 💡 **Tip:**  
+> Make sure the dataset folder is placed correctly before running the program, otherwise the relative paths may not resolve properly.  
+> If you need to use a custom dataset path, you can modify it in  
+> [`3rdparty/datapath.h`](./3rdparty/datapath.h).
+
 
 ---
 ## 🗂 Data Format
