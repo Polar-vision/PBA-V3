@@ -48,14 +48,14 @@ You can download the dataset package from the following link:
 
 After downloading, **extract the contents into the `PBA-V3/` directory**.
 
-The final folder structure should look like this:
+The final folder structure should look like this:  
 PBA-V3/  
 ├── datasets/  
 │ ├── KD1-problem-83-48102/  
 │ ├── ...  
-├── src/  
-├── CMakeLists.txt  
-└── ...  
+├── 3rdparty/  
+├── ba/    
+└── example/    
 
 > 💡 **Tip:**  
 > Make sure the dataset folder is placed correctly before running the program, otherwise the relative paths may not resolve properly.  
