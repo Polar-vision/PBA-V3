@@ -16,7 +16,7 @@
 // static const char* dt = "ODM2-problem-293-318975/Initial Value/cal.txt";
 // static const char* dt = "ODM3-problem-142-84650/Initial Value/cal.txt";
 // static const char* dt = "ODM4-problem-200-135677/Initial Value/cal.txt";
-// static const char* dt = "ODM5-problem-176-60757/Initial Value/cal.txt";
+// static const char* dt = "ODM5-problem-176-60757/Initial Value/cal.txt";///////////////////
 // static const char* dt = "ODM6-problem-112-33046/Initial Value/cal.txt";
 // static const char* dt = "ODM7-problem-28-7617/Initial Value/cal.txt";
 // static const char* dt = "ODM8-problem-38-57138/Initial Value/cal.txt";
@@ -43,17 +43,18 @@
 // static const char* dt = "ODM29-problem-36-9023/Initial Value/cal.txt";
 // static const char* dt = "ODM30-problem-225-216557/Initial Value/cal.txt";
 // static const char* dt = "ODM31-problem-239-52995/Initial Value/cal.txt";
-// static const char* dt = "ODM32-problem-51-36428/Initial Value/cal.txt";
+// static const char* dt = "ODM32-problem-51-36428/Initial Value/cal.txt";//
 // static const char* dt = "ODM33-problem-51-38015/Initial Value/cal.txt";
 // static const char* dt = "ODM34-problem-171-93894/Initial Value/cal.txt";
 // static const char* dt = "ODM35-problem-1825-1811213/Initial Value/cal.txt";
 
-static const char* dt = "KD1-problem-83-48102/Initial Value/cal.txt";
+// static const char* dt = "KD1-problem-83-48102/Initial Value/cal.txt";
 // static const char* dt = "KD2-problem-160-58177/Initial Value/cal.txt";
-// static const char* dt = "KD3-problem-401-152072/Initial Value/cal.txt";
+static const char* dt = "KD3-problem-401-152072/Initial Value/cal.txt";
 // static const char* dt = "KD4-problem-161-61484/Initial Value/cal.txt";
 // static const char* dt = "KD5-problem-150-70567/Initial Value/cal.txt";
 // static const char* dt = "KD6-problem-320-123204/Initial Value/cal.txt";
+// static const char* dt = "E:/zuo/projects/backup/data/colmap/mydata/CognacStJacquesDoor/cal.txt";
 // static const char* dt = "KD7-problem-438-219869/Initial Value/cal.txt";
 // static const char* dt = "KD8-problem-92-19512/Initial Value/cal.txt";
 // static const char* dt = "KD9-problem-28-9501/Initial Value/cal.txt";

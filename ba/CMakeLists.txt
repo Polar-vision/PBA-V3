@@ -54,6 +54,7 @@ if (MSVC)
         message(STATUS "MSVC 32-bit (Win32)")
         # Eigen 设置
         set(EIGEN3_INCLUDE_DIR "${3RDPARTY_DIR}/eigen3")
+        set(SPECTRA_INCLUDE_DIR "${3RDPARTY_DIR}/spectra/include")
         set(Cholmod_LIBS_DIR "${3RDPARTY_DIR}/cholmod/x86/lib")
     endif()
 endif()
@@ -86,6 +87,7 @@ target_compile_definitions(ba PRIVATE BA_STATIC)  # 静态库不需要导出符�
 target_include_directories(ba PRIVATE
     ${CMAKE_SOURCE_DIR}
     ${EIGEN3_INCLUDE_DIR}
+    ${SPECTRA_INCLUDE_DIR}
     ${BA_INCLUDE_DIR}
     ${3RDPARTY_DIR}
 )
@@ -128,6 +130,7 @@ target_compile_definitions(ba_shared PRIVATE BA_EXPORTS)  # 动态库需要导�
 target_include_directories(ba_shared PRIVATE
     ${CMAKE_SOURCE_DIR}
     ${EIGEN3_INCLUDE_DIR}
+    ${SPECTRA_INCLUDE_DIR}
     ${BA_INCLUDE_DIR}
     ${3RDPARTY_DIR}
 )

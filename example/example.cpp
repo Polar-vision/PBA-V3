@@ -5,6 +5,10 @@
 #include <map>
 #include <string>
 #include <filesystem>
+#include "eigen3/Eigen/Dense"
+#include <iostream>
+
+using namespace Eigen;
 using namespace std;
 
 string get_current_dir(){
@@ -19,7 +23,7 @@ string get_dataset_path(){
 int main(int argc, char* argv[] )
 {
 	argv[1] = const_cast<char*>(dt);
-	argv[2] = "pba_lm";
+	argv[2] = "sba_lm";
 	bool bLM = true;   //true is Levenberg-Marquardt
 	BAType ba = BAType::pba;
 	string dt = argv[1];
@@ -54,6 +58,7 @@ int main(int argc, char* argv[] )
 	string data_file = get_dataset_path()+zsw;
 	size_t pos = data_file.find_last_of("/\\");
 	string parentPath = (pos != string::npos) ? data_file.substr(0, pos) : "";
+	// parentPath = "E:/zuo/projects/backup/data/colmap/mydata/CognacStJacquesDoor";
 	string pP = parentPath + "/";
 	string p1 = pP + "Cam.txt";
 	string p2 = pP + "Feature.txt";
@@ -96,8 +101,11 @@ int main(int argc, char* argv[] )
 
 
 	printf("%s\n",szXYZ);
+	printf("%s\n",szCam);
 	BAExporter BA(ba);
 	BA.ba_run(false, bLM, 100, szCam, szFea, szXYZ, szCalib, szReport, szPose, sz3D);
+
+	
 
 /*������BAL��98�����ݼ�����*/
 

@@ -12,7 +12,19 @@
 #include <Eigen/LU>
 #include <Eigen/StdVector>
 #include <Eigen/Cholesky>
+#include <Eigen/Sparse>	
+#include <Eigen/IterativeLinearSolvers>
+#include <Eigen/SVD>
+#include <Spectra/GenEigsSolver.h>
+#include <Spectra/SymEigsSolver.h>
+#include <Spectra/MatOp/SparseSymMatProd.h>
+#include <unsupported/Eigen/IterativeSolvers>
 
+#include <Spectra/SymEigsShiftSolver.h>
+#include <Spectra/MatOp/SparseSymShiftSolve.h>
+#include <tuple>
+using namespace Spectra;
+using SpMat = Eigen::SparseMatrix<double>;
 #if defined(_WIN64) || (defined(_MSC_VER) && defined(_M_X64))
 	#include "ceres/ceres.h"
 	#include "ceres/rotation.h"
@@ -37,11 +49,11 @@ using namespace Eigen;
 ////use sba_crsm structure from SBA (http://www.ics.forth.gr/~lourakis/sba/) to store sparse matrix
 //struct sba_crsm
 //{
-//    int nr, nc;   //Ï¡Êè¾ØÕóµÄÐÐÁÐ
-//    int nnz;      //·ÇÁãÔªËØ¸öÊý
-//    int* val;     //´æ´¢·ÇÁãÔªËØ
-//    int* colidx;  //·ÇÁãÔªËØµÄÁÐºÅ
-//    int* rowptr;  //Ö¸ÏòÃ¿ÐÐµÚÒ»¸ö·ÇÁãÔªËØµÄË÷ÒýÊý×é (size: nr+1)
+//    int nr, nc;   //Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//    int nnz;      //ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½
+//    int* val;     //ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+//    int* colidx;  //ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½Ðºï¿½
+//    int* rowptr;  //Ö¸ï¿½ï¿½Ã¿ï¿½Ðµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (size: nr+1)
 //};
 
 class IBA
@@ -74,6 +86,22 @@ public:
 	void readPointProjections(FILE* fp, double* imgpts, int* photo, int* imgptsSum, int n3Dpts, int n2Dprojs);
 	void readImagePts(const char* szProj, double** imgpts, int** photo, int** imgptsSum, int& n3Dpts, int& n2Dprojs);
 	void ba_printHelp(BAType ba);
+	Eigen::SparseMatrix<double> buildSparseMatrixCOO(int rows,int cols,
+		const std::vector<int> & row_indices,const std::vector<int> & col_indices, const std::vector<double> & values);
+	Eigen::SparseMatrix<double> buildSparseMatrixCOO_safe(
+		int rows,
+		int cols,
+		const std::vector<int> &row_indices,
+		const std::vector<int> &col_indices,
+		const std::vector<double> &values);
+	double compute_H_inf_norm(double* U, double* V, double* W, double mu);
+	VectorXd convertStoDenseMatrix(double* S,sba_crsm& Sidxij,const char * name1,const char * name2);//std::tuple<double,double,double>
+	void convertUtoDenseMatrix(double* U,sba_crsm *Uidxij,const char * name1,const char * name2);
+	void convertHtoDenseMatrix(double* U,double *V,double *W,const char * name1,const char * name2);
+	void computeHMaxSingularValue(double* U, double* V, double* W, double& lambda_max, double& lambda_min, double& cond);
+	double spectra_lanczos_max_lamuda(SpMat S);
+	double spectra_lanczos_min_lamuda(SpMat S);
+	double shift_invert_min_lamuda(SpMat S);
 	int		m_ncams, m_n3Dpts, m_n2Dprojs, m_nS, nc_;  //number of camera, 3D points, 2D projection points, non-zero element of S matrix
 	int* m_archor;
 	int* m_photo, * m_feature;
@@ -114,9 +142,9 @@ public:
 	};
 	struct Point3D{
 		double xyz[3];
-		double aep[3];//ÊÓ²î½Ç²ÎÊý»¯µÄÈýÎ¬µã
-		int nM;//Ö÷Ãªµã
-		int nA;//¸±Ãªµã
+		double aep[3];//ï¿½Ó²ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
+		int nM;//ï¿½ï¿½Ãªï¿½ï¿½
+		int nA;//ï¿½ï¿½Ãªï¿½ï¿½
 	};
 	struct Observation{
 		int view_idx;
@@ -131,6 +159,7 @@ public:
 	std::vector<Point3D> points;
 	std::vector<Track> tracks;
 #elif defined(_WIN32)
+
 	virtual bool ba_motstr_levmar()=0;
 	virtual bool ba_motstr_gn(FixType ft = BA_FixDefault)=0;
 	void sba_crsm_alloc(struct sba_crsm* sm, int nr, int nc, int nnz);
@@ -140,7 +169,7 @@ public:
 	//void ba_readCameraPose_(char* fname);
 	double nrmL2xmy(double* const e, const double* const x, const double* const y, const int n);
 	void ba_saveTriangulatedxyz(const char* sz3Dpt, double* p);
-	int ba_ConstructSmask(sba_crsm& Sidxij, sba_crsm& Uidxij);//·Ö±ðÊÇS¾ØÕóºÍU¾ØÕóµÄÏ¡ÊèË÷Òý
+	int ba_ConstructSmask(sba_crsm& Sidxij, sba_crsm& Uidxij);//ï¿½Ö±ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Ï¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	void ba_inverseVLM(double* V, double* IV, sba_crsm& Uidxij, double mu);
 	void ba_inverseVGN(double* U, double* V, sba_crsm& Uidxij);
 	double ba_computeInitialmu(double* U, double* V, sba_crsm& Uidxij, double tau, int nvars);

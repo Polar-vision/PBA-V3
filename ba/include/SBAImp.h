@@ -7,6 +7,11 @@
 #include <map>
 #include <vector>
 #include <set>
+#include <Spectra/SymEigsSolver.h>
+#include <Spectra/MatOp/SparseSymMatProd.h>
+#include <Spectra/SymEigsShiftSolver.h>
+#include <Spectra/MatOp/SparseSymShiftSolve.h>
+using namespace Spectra;
 // #include "dataPath.h"
 using namespace std;
 //using namespace Eigen;

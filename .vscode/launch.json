@@ -1,0 +1,92 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/PythonTest/sigma_spectral.py",
+      // "program": "${workspaceFolder}/PythonTest/cond_log.py",
+      // "program": "${workspaceFolder}/PythonTest/heat_spectral.py",
+      "console": "integratedTerminal"
+    },
+    // MSVC 调试器配置（用于 .pdb + MSVC 构建）
+    {
+      "name": "colmap2pba",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/backup/colmap2pba/build/Debug/colmap2pba.exe",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}/backup/colmap2pba",
+      "environment": [],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "example",
+      "type": "cppvsdbg",
+      "request": "launch",
+      // "program": "${workspaceFolder}/backup/example/build/RelWithDebInfo/example.exe",
+      // "program": "${workspaceFolder}/backup/example/build/Debug/example.exe",
+      "program": "${workspaceFolder}/test/PBA-V3/example/build/Debug/example.exe",
+      // "program": "${workspaceFolder}/backup/example/build/Release/example.exe",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}/test/PBA-V3/example",
+      "environment": [],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "SparseSolverProject",
+      "type": "cppvsdbg",
+      "request": "launch",
+      // "program": "${workspaceFolder}/backup/example/build/RelWithDebInfo/example.exe",
+      // "program": "${workspaceFolder}/backup/example/build/Debug/example.exe",
+      "program": "${workspaceFolder}/test/PBA-V3/SparseSolverProject/build/Debug/main.exe",
+      // "program": "${workspaceFolder}/backup/example/build/Release/example.exe",
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}/test/PBA-V3/SparseSolverProject",
+      "environment": [],
+      "console": "integratedTerminal"
+    },
+    // MinGW + GDB 调试器配置（用于 MinGW 构建 + DWARF 调试信息）
+    {
+      "name": "C++ Debug with MinGW (GDB)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/backup/colmap2pba/build/MinGWDebug/colmap2pba.exe", // ← 注意路径
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}/backup/colmap2pba",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "miDebuggerPath": "D:/Qt5.13.2_install/Tools/mingw730_64/bin/gdb.exe", // 你系统中的 GDB 路径
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "Debug Ceres",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/ceres-solver/build-msvc/bin/Debug/helloworld.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [
+        {
+          "name": "PATH",
+          "value": "C:/Windows/System32;E:/zuo/Program Files/NVIDIA cuDSS/v0.5/bin/12;E:/zuo/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.8/bin;${env:PATH}"
+        }
+      ],
+      // "externalConsole": true
+      "console": "integratedTerminal"
+    }
+  ]
+}

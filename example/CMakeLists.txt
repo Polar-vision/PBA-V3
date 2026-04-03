@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # set(BA_LIBS "E:/zuo/projects/backup/ba/build/Release")
 set(3RDPARTY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty" CACHE PATH "Path to 3rdparty dependencies")
 set(BA_LIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../ba/build/Release" CACHE PATH "Path to BA build directory")
+# set(BA_LIBS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../ba/build/Debug" CACHE PATH "Path to BA build directory")
 if(CMAKE_CL_64)
     # 确保 Vcpkg 的路径优先于系统路径
     set(VCPKG_INSTALLED_DIR "E:/zuo/vcpkg/installed") 

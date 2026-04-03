@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include <set>
+
 using namespace std;
 //using namespace Eigen;
 
@@ -412,7 +413,12 @@ public:
 			void pba_saveInitialXYZ(const char* sz3Dpt, double* p);
 			void pba_saveInitialParallax(const char* sz3Dpt, double* p);
 			double* pba_angle2xyz(double* p);
-
+			// void Jocobian_pre_pba(std::vector<int> & row_indices,std::vector<int> & col_indices,std::vector<double> & values,int & J_row,int nP,int nM,int nA, double* pAM, double* pAA, double* pPA, double* pPB);
+			// void Jocobian_pre_sba(std::vector<int> & row_indices,std::vector<int> & col_indices,std::vector<double> & values,int & J_row,int nP,double* pPA, double* pPB);
+			// void Jocobian_pre(std::vector<int> & row_indices1,std::vector<int> & col_indices1,std::vector<double> & values1,
+			// 		std::vector<int> & row_indices2,std::vector<int> & col_indices2,std::vector<double> & values2,
+			// 		int & J_row,int nP,int nM,int nN, int n,
+			// 		double* pAM, double* pAA, double* pPA, double* pPB);
 			//transform angle into XYZ
 			int		pba_angle2xytGN(double* p);
 			int		pba_angle2xytLM(double* p);
