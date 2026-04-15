@@ -5,7 +5,8 @@
       "name": "Python: Current File",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/PythonTest/sigma_spectral.py",
+      // "program": "${workspaceFolder}/PythonTest/sigma_spectral.py",
+      "program": "${workspaceFolder}/test/github/PBA-V3/python/linked_display.py",
       // "program": "${workspaceFolder}/PythonTest/cond_log.py",
       // "program": "${workspaceFolder}/PythonTest/heat_spectral.py",
       "console": "integratedTerminal"
