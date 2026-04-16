@@ -1,3 +1,4 @@
+import os
 import open3d as o3d
 import numpy as np
 import camera
@@ -11,6 +12,29 @@ def normalization(color):
     g = (color[1] - a) / (b - a)
     b = (color[2] - a) / (b - a)
     return [r, g, b]
+
+def copy_header_and_rename(input_ply_path, temp_txt_path, output_ply_path):
+    """
+    从PLY文件读取头部7行，添加到TXT文件的头部，生成新的PLY文件
+    """
+    # 1. 读取PLY文件的前7行头部
+    with open(input_ply_path, 'r') as f:
+        header_lines = [next(f) for _ in range(7)]
+    
+    # 2. 读取原始XYZ.txt的全部内容
+    with open(temp_txt_path, 'r') as f:
+        txt_content = f.read()
+    
+    # 3. 将头部和原始内容合并（头部在前）
+    new_content = ''.join(header_lines) + txt_content
+    
+    # 4. 写入新的XYZ.ply文件
+    with open(output_ply_path, 'w') as f:
+        f.write(new_content)
+    
+    print(f"成功生成新文件: {output_ply_path}")
+    print(f"原始文件 {temp_txt_path} 保持不变")
+
 
 def draw_camera_point(optype, path):
     width = 500
@@ -27,8 +51,14 @@ def draw_camera_point(optype, path):
 
     # load a scene point cloud
     if optype == ObjectPointType.ground_truth:
-        scene = o3d.io.read_point_cloud(path + 'G-XYZ.ply')
-        pose = np.loadtxt(path + 'G-Cam.txt')
+        parent_dir = os.path.dirname(os.path.dirname(path))
+        str = '/Initial Value/XYZ.ply'
+        input_ply_path = "%s%s" % (parent_dir, str)
+        output_ply_path = path + 'XYZ.ply'
+        temp_txt_path = path + 'XYZ.txt'
+        copy_header_and_rename(input_ply_path, temp_txt_path, output_ply_path)  
+        scene = o3d.io.read_point_cloud(output_ply_path)
+        pose = np.loadtxt(path + 'Cam.txt')
     elif optype == ObjectPointType.init:
         scene = o3d.io.read_point_cloud(path + 'XYZ.ply')
         pose = np.loadtxt(path + 'Cam.txt')
