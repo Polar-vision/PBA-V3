@@ -30,8 +30,6 @@ This project aims to answer key questions in BA optimization:
 
 To achieve this, we build a unified convergence analysis framework.
   
-# 🚀 Building from Source
-**PBA-V3:** Convergence Analysis of PBA vs. SBA Across 100+ BA Datasets 
 
 ## 🖥 Tested Platforms
 This project has been tested on:
