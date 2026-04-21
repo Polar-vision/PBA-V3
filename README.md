@@ -1,9 +1,8 @@
-🚀 PBA-V3
+# 🚀 PBA-V3
 Convergence Analysis of PBA vs. SBA Across 100+ BA Datasets
 
-📌 Overview
-
-PBA-V3 is a research-oriented project for:
+# 📌 Overview
+**PBA-V3** is a research-oriented project for:
 
 🔍 Systematic convergence analysis of Bundle Adjustment (BA) algorithms, focusing on
 Parallax Bundle Adjustment (PBA) vs. Sparse Bundle Adjustment (SBA)
