@@ -1,5 +1,5 @@
 # 🚀 PBA-V3
-Convergence Analysis of PBA vs. SBA Across 100+ BA Datasets
+Convergence Analysis of Parallax Bundle Adjustment (PBA) vs. Sparse Bundle Adjustment (SBA) Across 100+ BA Datasets
 
 ---
 
