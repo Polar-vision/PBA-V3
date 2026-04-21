@@ -122,3 +122,28 @@ Each dataset is organized in the following structure:
 
 - **Feature Tracks (`Feature.txt`)**  
   Each line represents a feature track, including the number of views, the corresponding image indices, and the (u, v) coordinates in each image.
+
+# 📊 Convergence Analysis Framework
+
+We analyze BA optimization from **three perspectives**:
+
+---
+
+## 1️⃣ First-Order Metrics (Gradient Behavior)
+
+### 🔹 Gradient Lipschitz Continuity
+\[
+L_k = \frac{\left\|\nabla f(x_k) - \nabla f(x_{k-1})\right\|}{\left\|x_k - x_{k-1}\right\|}
+\]
+- Measures gradient smoothness
+- Large values indicate instability or oscillation
+
+---
+
+### 🔹 Descent Direction Quality
+\[
+\cos(\theta_k) = \frac{\nabla f(x_k)^\top \Delta x_k}{\left\|\nabla f(x_k)\right\| \left\|\Delta x_k\right\|}
+\]
+- $\approx -1 \rightarrow$ ideal descent
+- $\approx 0 \rightarrow$ ineffective
+- $> 0 \rightarrow$ wrong direction
