@@ -327,12 +327,19 @@ Controls the transition between:
 ### 🔹 Gain Ratio ($\rho$)
 
 $$
-\rho = \frac{\text{actual reduction}}{\text{predicted reduction}}
+\rho = \frac{\Delta F_{\text{actual}}}{\Delta F_{\text{model}}}
 $$
 
-- $\rho > 0$ → **Successful step**: The update reduced the cost function as expected.
-- $\rho < 0$ → **Rejected step**: The update increased the cost function; the damping factor is adjusted.
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/gain_ratio.png" alt="Gain ratio computation flow" style="height: 280px; width: auto;">
+  <img src="images/rho_evolution.png" alt="Examples on the <strong>CR1-problem-11-9611</strong> dataset." style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Left: Gain ratio computation flow in the LM algorithm. Right: Examples on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
 
+- $\rho > 0$ → **Successful step**: The update reduced the cost function as expected; the step is accepted and $\lambda$ is decreased.
+- $\rho < 0$ → **Rejected step**: The update increased the cost function; the step is rejected and $\lambda$ is increased.
+
+The ratio quantifies how well the linear model approximates the true cost reduction, and directly drives the damping factor adjustment logic.
 ---
 
 ### 🔹 Trial Count
