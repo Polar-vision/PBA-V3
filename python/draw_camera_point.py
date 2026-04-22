@@ -98,7 +98,7 @@ def draw_camera_point(optype, path):
                                                                         intrinsic=intrinsics[:3, :3],
                                                                         extrinsic=T)
         # 缩放视锥
-        scale_factor = 0.06  # 缩小为原来的一半
+        scale_factor = 0.6  # 缩小为原来的一半
         camera_lines.scale(scale_factor, center=camera_lines.get_center())
 
         # 获取 LineSet 的 colors 属性
