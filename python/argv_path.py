@@ -2,7 +2,14 @@
 paths = [
     # 'E:/zuo/projects/test/PBA-V3/datasets/CR9-problem-11-7919/Initial Value/cal.txt',
 
-    'E:/zuo/projects/test/PBA-V3/datasets/KD3-problem-401-152072/Initial Value/cal.txt'
+    # 'E:/zuo/projects/test/PBA-V3/datasets/CR1-problem-11-9611/Initial Value/cal.txt'
+    # 'E:/zuo/projects/test/PBA-V3/datasets/CR2-problem-10-6935/Initial Value/cal.txt'
+    # 'E:/zuo/projects/test/PBA-V3/datasets/CR3-problem-12-8091/Initial Value/cal.txt'
+    'E:/zuo/projects/test/PBA-V3/datasets/CR4-problem-20-19344/Initial Value/cal.txt'
+    
+    
+    
+    # 'E:/zuo/projects/test/PBA-V3/datasets/KD3-problem-401-152072/Initial Value/cal.txt'
     # 'E:/zuo/projects/test/PBA-V3/datasets/KD11-problem-300-119380/Initial Value/cal.txt'
     # 'E:/zuo/projects/test/PBA-V3/datasets/ODM3-problem-142-84650/Initial Value/cal.txt'
     # 'E:/zuo/projects/test/PBA-V3/datasets/ODM5-problem-176-60757/Initial Value/cal.txt'

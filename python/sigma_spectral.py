@@ -2,7 +2,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from common import argv_path
+import argv_path
 
 file_path = argv_path.paths[0]
 directory = os.path.dirname(file_path)
@@ -23,6 +23,9 @@ pba_cond = pba_data1[:, 5]
 pba_binf = pba_data1[:, 6]
 pba_rsc = pba_data1[:, 7]
 pba_rmc = pba_data1[:, 8]
+pba_b_lips = pba_data1[:, 9]
+pba_b_dir_valid = pba_data1[:, 10]
+pba_nLmIt = pba_data1[:, 11]
 
 sba_error = sba_data1[:, 0]
 sba_rho  = sba_data1[:, 1]
@@ -33,6 +36,9 @@ sba_cond = sba_data1[:, 5]
 sba_binf = sba_data1[:, 6]
 sba_rsc = sba_data1[:, 7]
 sba_rmc = sba_data1[:, 8]
+sba_b_lips = sba_data1[:, 9]
+sba_b_dir_valid = sba_data1[:, 10]
+sba_nLmIt = sba_data1[:, 11]
 
 # 应用对数变换
 pba_data_log = np.log10(pba_data + 1e-10)
@@ -372,17 +378,16 @@ def plot_damping_evolution():
     # plt.show()
     print(f"Damping factor evolution saved to {output_pdf}")
 
-# 可选：创建rho因子演化图
 def plot_rho_evolution():
     """绘制rho因子随迭代的演化"""
     fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
     
-    iterations_pba = np.arange(1, n_iterations_pba + 1)
-    iterations_sba = np.arange(1, n_iterations_sba + 1)
+    iterations_pba = np.arange(0, n_iterations_pba + 1)
+    iterations_sba = np.arange(0, n_iterations_sba + 1)
     
-    ax.plot(iterations_pba, pba_rho[1:], color=pba_color, linewidth=2.0, 
+    ax.plot(iterations_pba, pba_rho, color=pba_color, linewidth=2.0, 
             marker='o', markersize=4, markevery=0.1, label='PBA')
-    ax.plot(iterations_sba, sba_rho[1:], color=sba_color, linewidth=2.0, 
+    ax.plot(iterations_sba, sba_rho, color=sba_color, linewidth=2.0, 
             linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
     
     ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
@@ -393,11 +398,11 @@ def plot_rho_evolution():
     ax.set_title('Gain Ratio Evolution', fontsize=14, fontweight='bold')
     
     # 标注关键点
-    ax.scatter([mid_iter, n_iterations_pba], 
-              [pba_rho[mid_iter], pba_rho[-1]], 
+    ax.scatter([0, mid_iter, n_iterations_pba], 
+              [pba_rho[0], pba_rho[mid_iter], pba_rho[-1]], 
               color=pba_color, s=50, zorder=5, edgecolors='black')
-    ax.scatter([mid_iter, n_iterations_sba], 
-              [sba_rho[mid_iter], sba_rho[-1]], 
+    ax.scatter([0, mid_iter, n_iterations_sba], 
+              [sba_rho[0], sba_rho[mid_iter], sba_rho[-1]], 
               color=sba_color, s=50, zorder=5, edgecolors='black')
     
     plt.tight_layout()
@@ -562,12 +567,12 @@ def plot_rsc_evolution():
     """绘制状态变量的相对变化量随迭代的演化"""
     fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
     
-    iterations_pba = np.arange(1, n_iterations_pba+1)
-    iterations_sba = np.arange(1, n_iterations_sba+1)
+    iterations_pba = np.arange(0, n_iterations_pba+1)
+    iterations_sba = np.arange(0, n_iterations_sba+1)
     
-    ax.plot(iterations_pba, pba_rsc[1:], color=pba_color, linewidth=2.0, 
+    ax.plot(iterations_pba, pba_rsc, color=pba_color, linewidth=2.0, 
             marker='o', markersize=4, markevery=0.1, label='PBA')
-    ax.plot(iterations_sba, sba_rsc[1:], color=sba_color, linewidth=2.0, 
+    ax.plot(iterations_sba, sba_rsc, color=sba_color, linewidth=2.0, 
             linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
     
     ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
@@ -578,11 +583,11 @@ def plot_rsc_evolution():
     ax.set_title('Evolution of the Relative Change of State Vector', fontsize=14, fontweight='bold')
     
     # 标注关键点
-    ax.scatter([mid_iter, n_iterations_pba-1], 
-              [pba_rsc[mid_iter], pba_rsc[-1]], 
+    ax.scatter([0, mid_iter, n_iterations_pba], 
+              [pba_rsc[0], pba_rsc[mid_iter], pba_rsc[-1]], 
               color=pba_color, s=50, zorder=5, edgecolors='black')
-    ax.scatter([mid_iter, n_iterations_sba-1], 
-              [sba_rsc[mid_iter], sba_rsc[-1]], 
+    ax.scatter([0, mid_iter, n_iterations_sba], 
+              [sba_rsc[0], sba_rsc[mid_iter], sba_rsc[-1]], 
               color=sba_color, s=50, zorder=5, edgecolors='black')
     
     plt.tight_layout()
@@ -631,7 +636,126 @@ def plot_rmc_evolution():
     # plt.show()
     print(f"rmc evolution saved to {output_pdf}")
 
-# 如果需要绘制条件数演化图，取消注释下一行
+
+def plot_b_lips_evolution():
+    """绘制梯度的Lipschitz连续性随迭代的演化"""
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
+    
+    iterations_pba = np.arange(1, n_iterations_pba + 1)
+    iterations_sba = np.arange(1, n_iterations_sba + 1)
+    
+    ax.plot(iterations_pba, pba_b_lips[1:], color=pba_color, linewidth=2.0, 
+            marker='o', markersize=4, markevery=0.1, label='PBA')
+    ax.plot(iterations_sba, sba_b_lips[1:], color=sba_color, linewidth=2.0, 
+            linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
+    
+    ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
+    ax.set_ylabel("Gradient Lipschitz", fontsize=14, fontweight='bold')
+#     ax.set_yscale('log')
+    ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
+    ax.legend(frameon=False, loc='best', fontsize=14)
+    ax.set_title('Gradient Lipschitz', fontsize=14, fontweight='bold')
+    
+    # 标注关键点
+    ax.scatter([mid_iter, n_iterations_pba], 
+              [pba_b_lips[mid_iter], pba_rmc[-1]], 
+              color=pba_color, s=50, zorder=5, edgecolors='black')
+    ax.scatter([mid_iter, n_iterations_sba], 
+              [sba_b_lips[mid_iter], sba_rmc[-1]], 
+              color=sba_color, s=50, zorder=5, edgecolors='black')
+    
+    plt.tight_layout()
+    
+    output_pdf = directory + '/b_lips_evolution.pdf'
+    output_png = directory + '/b_lips_evolution.png'
+    plt.savefig(output_pdf, format='pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
+    # plt.show()
+    print(f"b_lips evolution saved to {output_pdf}")
+
+def plot_b_dir_valid_evolution():
+    """绘制梯度方向的有效性随迭代的演化"""
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
+    
+    iterations_pba = np.arange(0, n_iterations_pba+1)
+    iterations_sba = np.arange(0, n_iterations_sba+1)
+    
+    ax.plot(iterations_pba, pba_b_dir_valid, color=pba_color, linewidth=2.0, 
+            marker='o', markersize=4, markevery=0.1, label='PBA')
+    ax.plot(iterations_sba, sba_b_dir_valid, color=sba_color, linewidth=2.0, 
+            linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
+    
+    ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
+    ax.set_ylabel("Efficacy of the Gradient Direction", fontsize=14, fontweight='bold')
+    # ax.set_yscale('log')
+    ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
+    ax.legend(frameon=False, loc='best', fontsize=14)
+    ax.set_title('Evolution of the Efficacy of the Gradient Direction', fontsize=14, fontweight='bold')
+    
+    # 标注关键点
+    ax.scatter([0, mid_iter, n_iterations_pba], 
+              [pba_b_dir_valid[0], pba_b_dir_valid[mid_iter], pba_b_dir_valid[-1]], 
+              color=pba_color, s=50, zorder=5, edgecolors='black')
+    ax.scatter([0, mid_iter, n_iterations_sba], 
+              [sba_b_dir_valid[0], sba_b_dir_valid[mid_iter], sba_b_dir_valid[-1]], 
+              color=sba_color, s=50, zorder=5, edgecolors='black')
+    
+    plt.tight_layout()
+    
+    output_pdf = directory + '/b_dir_valid_evolution.pdf'
+    output_png = directory + '/b_dir_valid_evolution.png'
+    plt.savefig(output_pdf, format='pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
+    # plt.show()
+    print(f"b_dir_valid evolution saved to {output_pdf}")
+
+def plot_nLimIte_evolution():
+    """绘制当前阻尼参数（或信任区域半径）下，算法尝试更新参数的总次数随迭代的演化"""
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
+    
+    iterations_pba = np.arange(0, n_iterations_pba + 1)
+    iterations_sba = np.arange(0, n_iterations_sba + 1)
+    
+    ax.plot(iterations_pba, pba_nLmIt, color=pba_color, linewidth=2.0, 
+            marker='o', markersize=4, markevery=0.1, label='PBA')
+    ax.plot(iterations_sba, sba_nLmIt, color=sba_color, linewidth=2.0, 
+            linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
+    
+    ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
+    # 改进1：使用更规范的Y轴名称
+    ax.set_ylabel("Number of update attempts", fontsize=14, fontweight='bold')
+    
+    # 改进2：强制Y轴显示整数刻度
+    from matplotlib.ticker import MaxNLocator
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    
+    # 改进3：设置Y轴范围从0开始（如果数据最小值大于0）
+    y_min = min(np.min(pba_nLmIt), np.min(sba_nLmIt))
+    y_max = max(np.max(pba_nLmIt), np.max(sba_nLmIt))
+    ax.set_ylim(bottom=max(0, y_min - 1), top=y_max + 1)
+    
+    # ax.set_yscale('log')  # 整数数据通常不推荐log坐标
+    ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
+    ax.legend(frameon=False, loc='best', fontsize=14)
+    ax.set_title('Number of Parameter Update Attempts per Iteration', fontsize=14, fontweight='bold')
+    
+    # 标注关键点
+    ax.scatter([0, mid_iter, n_iterations_pba], 
+              [pba_nLmIt[0], pba_nLmIt[mid_iter], pba_nLmIt[-1]], 
+              color=pba_color, s=50, zorder=5, edgecolors='black')
+    ax.scatter([0, mid_iter, n_iterations_sba], 
+              [sba_nLmIt[0], sba_nLmIt[mid_iter], sba_nLmIt[-1]], 
+              color=sba_color, s=50, zorder=5, edgecolors='black')
+    
+    plt.tight_layout()
+    
+    output_pdf = directory + '/nLmIt_evolution.pdf'
+    output_png = directory + '/nLmIt_evolution.png'
+    plt.savefig(output_pdf, format='pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
+    # plt.show()
+    print(f"nLmIt evolution saved to {output_pdf}")
+
 plot_condition_evolution()
 plot_damping_evolution()
 plot_rho_evolution()
@@ -641,3 +765,6 @@ plot_error_evolution()
 plot_binf_evolution()
 plot_rsc_evolution()
 plot_rmc_evolution()
+plot_b_lips_evolution()
+plot_b_dir_valid_evolution()
+plot_nLimIte_evolution()
