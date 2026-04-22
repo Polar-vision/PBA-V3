@@ -8,7 +8,7 @@ Convergence Analysis of Parallax Bundle Adjustment (PBA) vs. Sparse Bundle Adjus
 PBA-V3 is a research-oriented project for:
 
 🔍 Systematic convergence analysis of Bundle Adjustment (BA) algorithms, focusing on  
-Parallax Bundle Adjustment (PBA) vs. Sparse Bundle Adjustment (SBA)
+PBA vs. SBA
 
 Unlike standard BA implementations, this project emphasizes:
 - 📊 First-order and second-order optimization behavior
