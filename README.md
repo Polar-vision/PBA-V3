@@ -168,8 +168,8 @@ $$
 $$
 
 <div align="center">
-  <img src="images/gradient_direction.png" alt="Gradient Lipschitz Continuity Diagram" width="550">
-  <p align="center"><em>Gradient Lipschitz continuity check in GN/LM optimization</em></p>
+  <img src="images/gradient_direction.png" alt="Gradient Direction Quality Diagram" width="550">
+  <p align="center"><em>Gradient direction quality check in GN/LM optimization</em></p>
 </div>
 
 This metric measures the alignment between the negative gradient (steepest descent direction) and the actual parameter update direction $\Delta x_k$. It quantifies how effectively the optimization step leverages the gradient to reduce the objective function.
