@@ -162,15 +162,6 @@ For each dataset, we visualize:
 
 ### 🎨 Visualization
 
-Each dataset is visualized in a **2×2 comparison layout**:
-
-| Position       | Description                          |
-|:-------------:|:------------------------------------|
-| Top-left      | Ground truth geometry & camera poses |
-| Top-right     | Initial reconstruction               |
-| Bottom-left   | Optimized by PBA                     |
-| Bottom-right  | Optimized by SBA                     |
-
 <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 700px; margin: 0 auto;">
   <img src="images/cal.txtG-XYZ.png" alt="Ground Truth" style="width: 48%;">
   <img src="images/cal.txtInit-XYZ.png" alt="Initial Structure" style="width: 48%;">
