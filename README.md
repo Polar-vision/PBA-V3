@@ -347,7 +347,7 @@ $$
 
 The ratio quantifies how well the linear model approximates the true cost reduction, and directly drives the damping factor adjustment logic in the LM algorithm.
 
-In the plot, PBA's gain ratio quickly stabilizes near 1.0 after a small number of iterations, indicating that the quadratic model closely matches the actual cost reduction, leading to reliable and efficient updates. In contrast, SBA exhibits large, frequent fluctuations, with many iterations far below 1.0 and occasional near-zero values, reflecting poor linear approximations, frequent rejected steps, and an overall less stable optimization process.
+In the plot, PBA's gain ratio quickly stabilizes near 1.0 after a small number of iterations, indicating that the quadratic model closely matches the actual cost reduction, leading to reliable and efficient updates. In contrast, SBA exhibits large, frequent fluctuations, with many iterations far below 1.0 and occasional near-zero values, reflecting poor linear approximations, frequent rejected steps (verified in the subsequent Trial Count section), and an overall less stable optimization process.
 
 ---
 
