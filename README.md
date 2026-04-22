@@ -201,7 +201,7 @@ $$
 \sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_n
 $$
 
-The ordered singular values of the Schur complement matrix \( \mathbf{S} \), sorted from largest to smallest. This spectrum is used to detect:
+The ordered singular values of the Schur complement matrix $$\( \mathbf{S} \)$$, sorted from largest to smallest. This spectrum is used to detect:
 - **Degeneracy**: Near-zero singular values indicate rank deficiency or an ill-posed problem.
 - **Weakly constrained directions**: Directions with very small singular values correspond to low-curvature, poorly observable modes, which can slow down convergence.
 
