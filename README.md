@@ -274,16 +274,27 @@ The figures compare the singular value spectra and condition numbers of PBA and 
 ---
 
 ### 🔹 Extreme Singular Values
-<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/smin_evolution.png" alt="Minimum singular value evolution" style="height: 250px; width: auto;">
-  <img src="images/smax_evolution.png" alt="Maximum singular value evolution" style="height: 250px; width: auto;">
+
+Singular values of the normal matrix $$\( \mathbf{J}^\top\mathbf{J} \)$$ reveal key properties of the optimization landscape and numerical conditioning.
+
+<div align="center">
+  <img src="images/smax_evolution.png" alt="Maximum singular value evolution" style="height: 280px; width: auto;">
 </div>
-<p align="center"><em>Left: Minimum singular value evolution. Right: Maximum singular value evolution (PBA vs. SBA on CR1-problem-11-9611).</em></p>
+<p align="center"><em>Maximum singular value evolution for PBA vs. SBA on the CR1-problem-11-9611 dataset.</em></p>
 
 - $$\( \sigma_{\max} \rightarrow \)$$ **Curvature upper bound**: The largest singular value sets an upper bound on the maximum curvature of the objective function, indicating the steepest directions in the optimization landscape.
-- $$\( \sigma_{\min} \rightarrow \)$$ **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
+- Both PBA and SBA start with similarly large $$\( \sigma_{\max} \)$$, but PBA reduces it more rapidly and stabilizes at a slightly higher level than SBA. This shows that PBA quickly dampens extreme curvature, leading to a more well-behaved optimization landscape.
 
-The plots show that while both methods see a sharp drop in $$\( \sigma_{\max} \)$$ early in optimization, PBA maintains a significantly higher and more stable $$\( \sigma_{\min} \)$$ than SBA throughout the process. This indicates better conditioning and observability, which directly contributes to PBA’s faster and more robust convergence.
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/smin_evolution.png" alt="Minimum singular value evolution (linear scale)" style="height: 250px; width: auto;">
+  <img src="images/smin_evolution_log_scale.png" alt="Minimum singular value evolution (log scale)" style="height: 250px; width: auto;">
+</div>
+<p align="center"><em>Left: Minimum singular value evolution (linear scale). Right: Minimum singular value evolution (log scale), revealing the full difference in conditioning.</em></p>
+
+- $$\( \sigma_{\min} \rightarrow \)$$ **Observability & conditioning**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability. A larger $$\( \sigma_{\min} \)$$ means better conditioning.
+- On the linear scale, both methods appear to converge to near-zero $$\( \sigma_{\min} \)$$. However, the log-scale plot clearly shows that **PBA maintains a significantly larger minimum singular value than SBA** throughout the entire optimization. This confirms that PBA’s feature parametrization improves the numerical conditioning of the problem, leading to a more stable and better-posed system compared to SBA.
+
+Taken together, these curves demonstrate that PBA achieves a more balanced spectrum: a controlled $$\( \sigma_{\max} \)$$ and a much higher $$\( \sigma_{\min} \)$$, resulting in a substantially lower condition number and superior numerical stability.
 
 ---
 
