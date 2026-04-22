@@ -263,8 +263,16 @@ Measures the relative change in the state vector between consecutive iterations.
 
 ---
 
-### 🔹 Relative MSE Change
-$$  
+### 🔹 Relative RMSE Change
+
+$$
 \frac{\left| f_k - f_{k-1} \right|}{f_{k-1}}
-$$  
-Measures the relative change in the objective function (reprojection error / MSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
+$$
+
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/relative_rmse_change.png" alt="Relative rmse change check in GN/LM optimization" style="height: 280px; width: auto;">
+  <img src="images/rmc_evolution.png" alt="Example" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Left: Relative RMSE change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+
+Measures the relative change in the objective function (reprojection error / RMSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
