@@ -789,6 +789,42 @@ def plot_b_lips_evolution():
     # plt.show()
     print(f"b_lips evolution saved to {output_pdf}")
 
+def plot_b_lips_evolution_log_scale():
+    """绘制梯度的Lipschitz连续性随迭代的演化"""
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
+    
+    iterations_pba = np.arange(1, n_iterations_pba + 1)
+    iterations_sba = np.arange(1, n_iterations_sba + 1)
+    
+    ax.plot(iterations_pba, pba_b_lips[1:], color=pba_color, linewidth=2.0, 
+            marker='o', markersize=4, markevery=0.1, label='PBA')
+    ax.plot(iterations_sba, sba_b_lips[1:], color=sba_color, linewidth=2.0, 
+            linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
+    
+    ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
+    ax.set_ylabel("Gradient Lipschitz (log scale)", fontsize=14, fontweight='bold')
+    ax.set_yscale('log')
+    ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
+    ax.legend(frameon=False, loc='best', fontsize=14)
+    ax.set_title('Gradient Lipschitz (log scale)', fontsize=14, fontweight='bold')
+    
+    # 标注关键点
+    ax.scatter([mid_iter, n_iterations_pba], 
+              [pba_b_lips[mid_iter], pba_rmc[-1]], 
+              color=pba_color, s=50, zorder=5, edgecolors='black')
+    ax.scatter([mid_iter, n_iterations_sba], 
+              [sba_b_lips[mid_iter], sba_rmc[-1]], 
+              color=sba_color, s=50, zorder=5, edgecolors='black')
+    
+    plt.tight_layout()
+    
+    output_pdf = directory + '/b_lips_evolution_log_scale.pdf'
+    output_png = directory + '/b_lips_evolution_log_scale.png'
+    plt.savefig(output_pdf, format='pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
+    # plt.show()
+    print(f"b_lips evolution log scale saved to {output_pdf}")
+
 def plot_b_dir_valid_evolution():
     """绘制梯度方向的有效性随迭代的演化"""
     fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
@@ -886,5 +922,6 @@ def plot_nLimIte_evolution():
 # plot_rsc_evolution()
 # plot_rmc_evolution()
 # plot_b_lips_evolution()
+plot_b_lips_evolution_log_scale()
 # plot_b_dir_valid_evolution()
 # plot_nLimIte_evolution()
