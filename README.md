@@ -349,5 +349,12 @@ The ratio quantifies how well the linear model approximates the true cost reduct
 ---
 
 ### 🔹 Trial Count
-- Number of attempts (LM iterations) before accepting an update.
+
+<div align="center">
+  <img src="images/nLmIt_evolution.png" alt="Number of parameter update attempts per iteration" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Number of parameter update attempts per iteration for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+
+- Number of LM update attempts per iteration before accepting a successful step.
 - Reflects the quality of the damping parameter schedule and the overall optimization stability.
+- The plot shows that PBA maintains nearly all iterations with only one attempt, indicating highly reliable damping factor adjustment. In contrast, SBA requires frequent retries, reflecting a more unstable and less well-conditioned optimization process.
