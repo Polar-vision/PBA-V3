@@ -190,8 +190,8 @@ L_k = \frac{\left\|g(x_{k+1}) - g(x_k)\right\|}{\left\|x_{k+1} - x_k\right\|}
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" style="height: 280px; width: auto;">
-  <img src="images/b_lips_evolution.png" alt="Example" style="height: 280px; width: auto;">
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" style="height: 260px; width: auto;">
+  <img src="images/b_lips_evolution.png" alt="Example" style="height: 260px; width: auto;">
 </div>
 <p align="center"><em>Left: Gradient Lipschitz continuity check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
