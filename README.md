@@ -266,7 +266,7 @@ Measures the relative change in the state vector between consecutive iterations.
 ### 🔹 Relative RMSE Change
 
 $$
-\frac{\left| f_k - f_{k-1} \right|}{f_{k-1}}
+\frac{\left| \varepsilon(\mathbf{x}_k) - \varepsilon(\mathbf{x}_{k-1}) \right|}{\varepsilon(\mathbf{x}_k)}
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
