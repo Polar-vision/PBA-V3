@@ -360,11 +360,6 @@ $$
 \mathbf{H} \leftarrow \mathbf{J}^\top \mathbf{J} + \lambda \cdot \mathbf{I}
 $$
 
-<div align="center">
-  <img src="images/damping_factor_evolution.png" alt="Damping factor evolution across iterations" style="height: 280px; width: auto;">
-</div>
-<p align="center"><em>Damping factor evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
-
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
   <img src="images/damping_factor_evolution.png" alt="Damping factor evolution across iterations" style="height: 250px; width: auto;">
   <img src="images/damping_factor_evolution_log_scale.png" alt="Damping factor evolution (log scale) across iterations" style="height: 250px; width: auto;">
