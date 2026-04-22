@@ -236,10 +236,18 @@ As predicted by the condition number analysis:
 - PBA maintains a gradient alignment of ~0.03 throughout the optimization, which is **an order of magnitude higher than SBA** (<0.01).
 - SBA's near-zero alignment means its updates are nearly orthogonal to the descent direction, resulting in negligible progress per iteration and requiring far more iterations to converge.
 
-> 💡 **Important Note**:
-> A common misconception is that a gradient alignment close to 1 is required for fast convergence. This is only true for pure gradient descent. In Gauss-Newton and Levenberg-Marquardt methods, convergence speed is determined by the **accuracy of the second-order approximation** and the **allowable step size**, not the alignment with the gradient direction.
+> 💡 **Important Note (Levenberg-Marquardt Only)**
+> A common misconception is that a gradient alignment close to 1 is always required for fast convergence. This is **only true when the Levenberg-Marquardt (LM) algorithm operates in the gradient-descent-dominated regime** (large damping factor λ).
 > 
-> In bundle adjustment, the Hessian matrix is inherently ill-conditioned, which causes the Newton update direction to be nearly orthogonal to the gradient direction for all methods. PBA's faster convergence stems from its better numerical conditioning, which allows larger, more accurate steps, even though the absolute gradient alignment value is small.
+> LM is a hybrid method that interpolates between two extremes:
+> - When λ is large: LM degenerates to small-step gradient descent. In this regime, gradient alignment directly determines convergence speed, as updates are proportional to the negative gradient.
+> - When λ is small: LM approximates pure Gauss-Newton. In this regime, convergence speed is determined by the **accuracy of the second-order approximation** and the **allowable step size**, not the absolute alignment with the gradient direction.
+> 
+> This explains the performance difference between PBA and SBA:
+> 1.  PBA's better numerical conditioning allows λ to drop rapidly to near zero, quickly entering the fast-converging Gauss-Newton regime.
+> 2.  SBA's poor conditioning forces it to remain in the high-damping, gradient-descent-dominated regime for much longer. Worse, its extremely low gradient alignment in this regime makes even gradient descent highly ineffective.
+> 
+> Thus, gradient alignment is only a critical metric in the early, high-damping stages of LM. PBA's superior performance stems from its ability to both exit this slow regime faster and achieve better alignment when it matters most.
 
 ---
 
