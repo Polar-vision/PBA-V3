@@ -136,11 +136,11 @@ $$
 L_k = \frac{\left\|g(x_{k+1}) - g(x_k)\right\|}{\left\|x_{k+1} - x_k\right\|}
 $$
 
-<div align="center">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" width="48%" style="display:inline-block;">
-  <img src="images/b_lips_evolution.png" alt="Example" width="48%" style="display:inline-block;">
-  <p align="center"><em>Left: Gradient lipschitz continuity check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" style="height: 280px; width: auto;">
+  <img src="images/b_lips_evolution.png" alt="Example" style="height: 280px; width: auto;">
 </div>
+<p align="center"><em>Left: Gradient Lipschitz continuity check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
 This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
 
@@ -169,8 +169,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 320px; width: auto;">
-  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 320px; width: auto;">
+  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 280px; width: auto;">
+  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 280px; width: auto;">
 </div>
 <p align="center"><em>Left: Gradient direction quality check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
