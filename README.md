@@ -190,8 +190,8 @@ L_k = \frac{\left\|g(x_{k+1}) - g(x_k)\right\|}{\left\|x_{k+1} - x_k\right\|}
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" style="height: 240px; width: auto;">
-  <img src="images/b_lips_evolution.png" alt="Example" style="height: 240px; width: auto;">
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" style="height: 250px; width: auto;">
+  <img src="images/b_lips_evolution.png" alt="Example" style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Left: Gradient Lipschitz continuity check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
@@ -221,8 +221,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 240px; width: auto;">
-  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 240px; width: auto;">
+  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 250px; width: auto;">
+  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Left: Gradient direction quality check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
@@ -242,8 +242,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/condition_number.png" alt="Condition Number" style="height: 280px; width: auto;">
-  <img src="images/condition_number_evolution.png" alt="Example" style="height: 280px; width: auto;">
+  <img src="images/condition_number.png" alt="Condition Number" style="height: 250px; width: auto;">
+  <img src="images/condition_number_evolution.png" alt="Example" style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Left: Condition number check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
@@ -275,8 +275,8 @@ The figures compare the singular value spectra and condition numbers of PBA and 
 
 ### 🔹 Extreme Singular Values
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/smin_evolution.png" alt="Minimum singular value evolution" style="height: 280px; width: auto;">
-  <img src="images/smax_evolution.png" alt="Maximum singular value evolution" style="height: 280px; width: auto;">
+  <img src="images/smin_evolution.png" alt="Minimum singular value evolution" style="height: 250px; width: auto;">
+  <img src="images/smax_evolution.png" alt="Maximum singular value evolution" style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Left: Minimum singular value evolution. Right: Maximum singular value evolution (PBA vs. SBA on CR1-problem-11-9611).</em></p>
 
@@ -312,8 +312,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/relative_rmse_change.png" alt="Relative rmse change check in GN/LM optimization" style="height: 280px; width: auto;">
-  <img src="images/rmc_evolution.png" alt="Example" style="height: 280px; width: auto;">
+  <img src="images/relative_rmse_change.png" alt="Relative rmse change check in GN/LM optimization" style="height: 250px; width: auto;">
+  <img src="images/rmc_evolution.png" alt="Example" style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Left: Relative RMSE change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
@@ -378,8 +378,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/gain_ratio.png" alt="Gain ratio computation flow" style="height: 280px; width: auto;">
-  <img src="images/rho_evolution.png" alt="Examples on the <strong>CR1-problem-11-9611</strong> dataset." style="height: 280px; width: auto;">
+  <img src="images/gain_ratio.png" alt="Gain ratio computation flow" style="height: 250px; width: auto;">
+  <img src="images/rho_evolution.png" alt="Examples on the <strong>CR1-problem-11-9611</strong> dataset." style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Left: Gain ratio computation flow in the LM algorithm. Right: Examples on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
 
