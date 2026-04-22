@@ -224,7 +224,7 @@ $$
 </div>
 <p align="center"><em>Left: Evolution of the singular value spectrum for PBA and SBA across initial, middle, and final optimization stages. Right: Final iteration comparison of singular value spectra and corresponding condition numbers on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
 
-The ordered singular values of the Schur complement matrix \( \mathbf{S} \), sorted from largest to smallest. This spectrum is used to detect:
+The ordered singular values of the Schur complement matrix $$\( \mathbf{S} \)$$, sorted from largest to smallest. This spectrum is used to detect:
 - **Degeneracy**: Near-zero singular values indicate rank deficiency or an ill-posed problem.
 - **Weakly constrained directions**: Directions with very small singular values correspond to low-curvature, poorly observable modes, which can slow down convergence.
 
@@ -233,5 +233,13 @@ The figures compare the singular value spectra and condition numbers of PBA and 
 ---
 
 ### 🔹 Extreme Singular Values
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/min_singular_value_evolution.png" alt="Minimum singular value evolution" style="height: 280px; width: auto;">
+  <img src="images/max_singular_value_evolution.png" alt="Maximum singular value evolution" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Left: Minimum singular value evolution across iterations for PBA and SBA. Right: Maximum singular value evolution across iterations for PBA and SBA.</em></p>
+
 - $$\( \sigma_{\max} \rightarrow \)$$ **Curvature upper bound**: The largest singular value sets an upper bound on the maximum curvature of the objective function, indicating the steepest directions in the optimization landscape.
 - $$\( \sigma_{\min} \rightarrow \)$$ **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
+
+The plots show that while both methods see a sharp drop in $$\( \sigma_{\max} \)$$ early in optimization, PBA maintains a significantly higher and more stable $$\( \sigma_{\min} \)$$ than SBA throughout the process. This indicates better conditioning and observability, which directly contributes to PBA’s faster and more robust convergence.
