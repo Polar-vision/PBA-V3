@@ -310,7 +310,7 @@ Root Mean Squared Error (RMSE) of reprojection residuals. Tracks the objective f
 ### 🔹 Damping Factor ($\lambda$)
 
 $$
-\mathbf{H} \leftarrow \mathbf{J}^\top \mathbf{J} + \lambda \cdot \text{diag}(\mathbf{J}^\top \mathbf{J})
+\mathbf{H} \leftarrow \mathbf{J}^\top \mathbf{J} + \lambda \cdot \mathbf{I}
 $$
 
 <div align="center">
