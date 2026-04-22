@@ -303,6 +303,12 @@ $$
 
 Measures the relative change in the state vector between consecutive iterations. When this value falls below a predefined threshold, the optimization is considered to have converged.
 
+From the plot, we observe that:
+- **PBA** shows a large initial relative change, reflecting aggressive and effective updates that quickly adjust the state vector toward the optimum. By iteration 10, the relative change drops to near zero and remains stable, indicating that the parameters have converged to a fixed solution.
+- **SBA** exhibits persistent, large fluctuations in relative state change throughout the entire optimization process. Even after 60 iterations, the values remain significantly above zero, showing that the state vector continues to drift and the optimization has not fully stabilized.
+
+This metric directly confirms that PBA reaches a stable, fully converged state much earlier than SBA, which struggles to settle into a consistent solution due to its less favorable numerical conditioning.
+
 ---
 
 ### 🔹 Relative MSE Change
@@ -315,7 +321,7 @@ $$
   <img src="images/relative_rmse_change.png" alt="Relative mse change check in GN/LM optimization" style="height: 250px; width: auto;">
   <img src="images/rmc_evolution.png" alt="Example" style="height: 250px; width: auto;">
 </div>
-<p align="center"><em>Left: Relative MSE change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+<p align="center"><em>Left: Relative MSE change computation flow. Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
 Measures the relative change in the objective function (reprojection error / MSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
 
