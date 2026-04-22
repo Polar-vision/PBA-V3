@@ -158,6 +158,8 @@ $$
 \cos(\theta_k) = \frac{-\nabla f(x_k)^\top \Delta x_k}{\left\|\nabla f(x_k)\right\| \left\|\Delta x_k\right\|}
 $$
 
-- $\approx -1$ → ideal descent
-- $\approx 0$ → ineffective
-- $> 0$ → wrong direction
+This metric measures the alignment between the negative gradient (steepest descent direction) and the actual parameter update direction $\Delta x_k$. It quantifies how effectively the optimization step leverages the gradient to reduce the objective function.
+
+- $\approx 1$ → **Ideal descent**: The update direction is nearly identical to the negative gradient, maximizing the first-order descent gain.
+- $\approx 0$ → **Ineffective**: The update direction is nearly orthogonal to the gradient, resulting in negligible progress.
+- $< 0$ → **Wrong direction**: The update direction has a positive dot product with the gradient, meaning it is aligned with the ascent direction and will increase the objective function value.
