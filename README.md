@@ -254,7 +254,7 @@ This metric quantifies the **numerical stability** and **ill-conditioning** of t
 
 From the plot, we observe a stark contrast between the two methods:
 - **PBA** stabilizes at a low condition number after the early iterations and remains nearly constant throughout the rest of the optimization. This confirms that PBA maintains a well-conditioned system from the middle stages onward, leading to stable and predictable updates.
-- **SBA’s condition number, by contrast, grows continuously and accelerates sharply in the later iterations, reaching values an order of magnitude higher than PBA’s. This growing ill-conditioning directly explains SBA’s slower convergence, higher number of rejected steps, and overall less stable behavior observed in previous metrics.
+- **SBA**’s condition number, by contrast, grows continuously and accelerates sharply in the later iterations, reaching values an order of magnitude higher than PBA’s. This growing ill-conditioning directly explains SBA’s slower convergence, higher number of rejected steps, and overall less stable behavior observed in previous metrics.
 
 This curve provides a direct, high-level confirmation of the core advantage of PBA’s parametrization: it keeps the problem numerically well-conditioned throughout the entire optimization process.
 
