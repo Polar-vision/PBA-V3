@@ -198,8 +198,8 @@ $$
 This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
-  <img src="images/b_lips_evolution.png" alt="Gradient Lipschitz evolution (linear scale)" style="height: 260px; width: auto;">
-  <img src="images/b_lips_evolution_log_scale.png" alt="Gradient Lipschitz evolution (log scale)" style="height: 260px; width: auto;">
+  <img src="images/b_lips_evolution.png" alt="Gradient Lipschitz evolution (linear scale)" style="height: 250px; width: auto;">
+  <img src="images/b_lips_evolution_log_scale.png" alt="Gradient Lipschitz evolution (log scale)" style="height: 250px; width: auto;">
 </div>
 <p align="center"><em>Evolution of the estimated local Lipschitz constant for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset. Left: linear scale. Right: log scale.</em></p>
 
