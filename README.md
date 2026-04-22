@@ -164,7 +164,7 @@ However, large gradient changes are concerning if they coincide with:
 
 ### 🔹 Gradient Direction Quality
 $$
-\cos(\theta_k) = \frac{-\nabla f(x_k)^\top \Delta x_k}{\left\|\nabla f(x_k)\right\| \left\|\Delta x_k\right\|}
+\cos(\theta_k) = \frac{-g(x_{current})^\top \Delta x}{\left\|g(x_{current})\right\| \left\|\Delta x\right\|}
 $$
 
 This metric measures the alignment between the negative gradient (steepest descent direction) and the actual parameter update direction $\Delta x_k$. It quantifies how effectively the optimization step leverages the gradient to reduce the objective function.
