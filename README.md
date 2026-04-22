@@ -341,10 +341,13 @@ $$
 </div>
 <p align="center"><em>Left: Gain ratio computation flow in the LM algorithm. Right: Examples on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
 
-- $\rho > 0$ → **Successful step**: The update reduced the cost function as expected; the step is accepted and $\lambda$ is decreased.
+- $\rho > 1$ → **Over-performing step**: The actual cost reduction is greater than the linear model predicted. This indicates that the quadratic approximation is overly conservative, and the step size can safely be increased (or $\lambda$ decreased further) to speed up convergence.
+- $0 < \rho \le 1$ → **Successful step**: The update reduced the cost function as expected; the step is accepted and $\lambda$ is decreased.
 - $\rho < 0$ → **Rejected step**: The update increased the cost function; the step is rejected and $\lambda$ is increased.
 
 The ratio quantifies how well the linear model approximates the true cost reduction, and directly drives the damping factor adjustment logic in the LM algorithm.
+
+In the plot, PBA's gain ratio quickly stabilizes near 1.0 after a small number of iterations, indicating that the quadratic model closely matches the actual cost reduction, leading to reliable and efficient updates. In contrast, SBA exhibits large, frequent fluctuations, with many iterations far below 1.0 and occasional near-zero values, reflecting poor linear approximations, frequent rejected steps, and an overall less stable optimization process.
 
 ---
 
