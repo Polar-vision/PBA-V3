@@ -405,4 +405,5 @@ In the plot, PBA's gain ratio quickly stabilizes near 1.0 after a small number o
 
 - Number of LM update attempts per iteration before accepting a successful step.
 - Reflects the quality of the damping parameter schedule and the overall optimization stability.
-- The plot shows that PBA maintains nearly all iterations with only one attempt, indicating highly reliable damping factor adjustment. In contrast, SBA requires frequent retries, reflecting a more unstable and less well-conditioned optimization process.
+
+The plot shows that PBA maintains nearly all iterations with only one attempt, indicating highly reliable damping factor adjustment. In contrast, SBA requires frequent retries, reflecting a more unstable and less well-conditioned optimization process.
