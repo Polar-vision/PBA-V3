@@ -139,7 +139,7 @@ $$
 <div align="center">
   <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" width="48%" style="display:inline-block;">
   <img src="images/b_lips_evolution.png" alt="Example" width="48%" style="display:inline-block;">
-  <p align="center"><em>Left: Gradient Lipschitz Continuity Diagram | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+  <p align="center"><em>Left: Gradient lipschitz continuity check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 </div>
 
 This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
@@ -169,8 +169,9 @@ $$
 $$
 
 <div align="center">
-  <img src="images/gradient_direction.png" alt="Gradient Direction Quality Diagram" width="550">
-  <p align="center"><em>Gradient direction quality check in GN/LM optimization</em></p>
+  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" width="48%" style="display:inline-block;">
+  <img src="images/b_dir_valid_evolution.png" alt="Example" width="48%" style="display:inline-block;">
+  <p align="center"><em>Left: Gradient direction quality check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 </div>
 
 This metric measures the alignment between the negative gradient (steepest descent direction) and the actual parameter update direction $\Delta x_k$. It quantifies how effectively the optimization step leverages the gradient to reduce the objective function.
