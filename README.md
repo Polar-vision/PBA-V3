@@ -248,15 +248,15 @@ The plots show that while both methods see a sharp drop in $$\( \sigma_{\max} \)
 ## 🔹 3️⃣ Stopping Criteria
 
 ### 🔹 Relative State Change
-$$
+$$  
 \frac{\left\|\mathbf{x}_k - \mathbf{x}_{k-1}\right\|}{\left\|\mathbf{x}_{k-1}\right\|}
-$$
+$$  
 Measures the relative change in the state vector between consecutive iterations. When this value falls below a predefined threshold, the optimization is considered to have converged.
 
 ---
 
 ### 🔹 Relative MSE Change
-$$
+$$  
 \frac{\left| f_k - f_{k-1} \right|}{f_{k-1}}
-$$
+$$  
 Measures the relative change in the objective function (reprojection error / MSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
