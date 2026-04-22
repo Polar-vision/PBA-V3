@@ -243,3 +243,21 @@ The figures compare the singular value spectra and condition numbers of PBA and 
 - $$\( \sigma_{\min} \rightarrow \)$$ **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
 
 The plots show that while both methods see a sharp drop in $$\( \sigma_{\max} \)$$ early in optimization, PBA maintains a significantly higher and more stable $$\( \sigma_{\min} \)$$ than SBA throughout the process. This indicates better conditioning and observability, which directly contributes to PBA’s faster and more robust convergence.
+
+---
+
+## 🔹 3️⃣ Stopping Criteria
+
+### 🔹 Relative State Change
+$$
+\frac{\left\|\mathbf{x}_k - \mathbf{x}_{k-1}\right\|}{\left\|\mathbf{x}_{k-1}\right\|}
+$$
+Measures the relative change in the state vector between consecutive iterations. When this value falls below a predefined threshold, the optimization is considered to have converged.
+
+---
+
+### 🔹 Relative MSE Change
+$$
+\frac{\left| f_k - f_{k-1} \right|}{f_{k-1}}
+$$
+Measures the relative change in the objective function (reprojection error / MSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
