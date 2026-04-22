@@ -178,7 +178,7 @@ From the visualization results, we can clearly observe:
 
 # 📊 Convergence Analysis Framework
 
-We analyze BA optimization from **three perspectives**:
+We analyze BA optimization from **four perspectives**:
 
 ---
 
@@ -342,15 +342,17 @@ $$
 ### 🔹 Reprojection Error
 
 $$
-\text{RMSE} = \sqrt{\frac{1}{N} \sum \left\| r_i \right\|^2}
+\text{MSE} = \frac{1}{N} \sum \left\| r_i \right\|^2
 $$
 
 <div align="center">
-  <img src="images/MSE_evolution.png" alt="RMSE evolution across iterations" style="height: 280px; width: auto;">
+  <img src="images/MSE_evolution.png" alt="MSE evolution (log scale) across iterations" style="height: 280px; width: auto;">
 </div>
-<p align="center"><em>RMSE evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+<p align="center"><em>MSE evolution (log scale) across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
 
-Root Mean Squared Error (RMSE) of reprojection residuals. Tracks the objective function value across iterations.
+Mean Squared Error (MSE) of reprojection residuals. Tracks the objective function value across iterations.
+
+On the log-scaled MSE curve, PBA converges orders of magnitude faster and reaches a much lower final error plateau. SBA requires far more iterations to reduce the error, and its final residual remains significantly higher, indicating slower and less effective convergence.
 
 ---
 
