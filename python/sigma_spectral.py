@@ -356,7 +356,7 @@ def plot_damping_evolution():
     
     ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
     ax.set_ylabel("Damping Factor", fontsize=14, fontweight='bold')
-    # ax.set_yscale('log')
+#     ax.set_yscale('log')
     ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
     ax.legend(frameon=False, loc='best', fontsize=14)
     ax.set_title('Damping Factor Evolution', fontsize=14, fontweight='bold')
@@ -377,6 +377,49 @@ def plot_damping_evolution():
     plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
     # plt.show()
     print(f"Damping factor evolution saved to {output_pdf}")
+
+def plot_damping_evolution_log():
+    """绘制阻尼因子随迭代的演化"""
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
+    
+    iterations_pba = np.arange(0, n_iterations_pba + 1)
+    iterations_sba = np.arange(0, n_iterations_sba + 1)
+    
+    # 处理零值：将0替换为机器精度或极小值
+    eps = 1e-16  # 或使用 np.finfo(float).eps
+    pba_mu_safe = np.array(pba_mu, dtype=float)
+    sba_mu_safe = np.array(sba_mu, dtype=float)
+    pba_mu_safe[pba_mu_safe <= 0] = eps
+    sba_mu_safe[sba_mu_safe <= 0] = eps
+    
+    ax.plot(iterations_pba, pba_mu_safe, color=pba_color, linewidth=2.0, 
+            marker='o', markersize=4, markevery=0.1, label='PBA')
+    ax.plot(iterations_sba, sba_mu_safe, color=sba_color, linewidth=2.0, 
+            linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
+    
+    ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
+    ax.set_ylabel("Damping Factor (log scale)", fontsize=14, fontweight='bold')
+    ax.set_yscale('log')
+    ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
+    ax.legend(frameon=False, loc='best', fontsize=14)
+    ax.set_title('Damping Factor Evolution (log scale)', fontsize=14, fontweight='bold')
+    
+    # 标注关键点（同样使用安全版本）
+    # 注意：如果原值为0，标注时显示极小值，位置会掉到图底部
+    ax.scatter([0, mid_iter, n_iterations_pba], 
+              [pba_mu_safe[0], pba_mu_safe[mid_iter], pba_mu_safe[-1]], 
+              color=pba_color, s=50, zorder=5, edgecolors='black')
+    ax.scatter([0, mid_iter, n_iterations_sba], 
+              [sba_mu_safe[0], sba_mu_safe[mid_iter], sba_mu_safe[-1]], 
+              color=sba_color, s=50, zorder=5, edgecolors='black')
+    
+    plt.tight_layout()
+    
+    output_pdf = directory + '/damping_factor_evolution_log_scale.pdf'
+    output_png = directory + '/damping_factor_evolution_log_scale.png'
+    plt.savefig(output_pdf, format='pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
+    print(f"Damping factor evolution log scale saved to {output_pdf}")
 
 def plot_rho_evolution():
     """绘制rho因子随迭代的演化"""
@@ -756,15 +799,16 @@ def plot_nLimIte_evolution():
     # plt.show()
     print(f"nLmIt evolution saved to {output_pdf}")
 
-plot_condition_evolution()
+# plot_condition_evolution()
 plot_damping_evolution()
-plot_rho_evolution()
-plot_sigma_min_evolution()
-plot_sigma_max_evolution()
-plot_error_evolution()
-plot_binf_evolution()
-plot_rsc_evolution()
-plot_rmc_evolution()
-plot_b_lips_evolution()
-plot_b_dir_valid_evolution()
-plot_nLimIte_evolution()
+plot_damping_evolution_log()
+# plot_rho_evolution()
+# plot_sigma_min_evolution()
+# plot_sigma_max_evolution()
+# plot_error_evolution()
+# plot_binf_evolution()
+# plot_rsc_evolution()
+# plot_rmc_evolution()
+# plot_b_lips_evolution()
+# plot_b_dir_valid_evolution()
+# plot_nLimIte_evolution()
