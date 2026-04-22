@@ -305,19 +305,25 @@ Measures the relative change in the state vector between consecutive iterations.
 
 ---
 
-### 🔹 Relative RMSE Change
+### 🔹 Relative MSE Change
 
 $$
 \frac{\left| \varepsilon(\mathbf{x}_k) - \varepsilon(\mathbf{x}_{k-1}) \right|}{\varepsilon(\mathbf{x}_k)}
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/relative_rmse_change.png" alt="Relative rmse change check in GN/LM optimization" style="height: 250px; width: auto;">
+  <img src="images/relative_rmse_change.png" alt="Relative mse change check in GN/LM optimization" style="height: 250px; width: auto;">
   <img src="images/rmc_evolution.png" alt="Example" style="height: 250px; width: auto;">
 </div>
-<p align="center"><em>Left: Relative RMSE change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+<p align="center"><em>Left: Relative MSE change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
-Measures the relative change in the objective function (reprojection error / RMSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
+Measures the relative change in the objective function (reprojection error / MSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
+
+From the plot, we observe that:
+- **PBA** exhibits large relative changes in the early iterations, indicating rapid, high-impact updates that quickly reduce the reprojection error. By iteration 15, the relative change drops to near zero and remains stable, showing that the cost function has converged to a stable minimum.
+- **SBA** takes much longer to stabilize: its relative change remains non-zero for most iterations, with persistent fluctuations and a sharp spike near the end. This indicates slow, incremental progress and lingering instability, even late in the optimization process.
+
+This metric confirms that PBA reaches a stable, fully converged state much earlier than SBA, while SBA continues to make small adjustments throughout the entire process without fully settling.
 
 ---
 
