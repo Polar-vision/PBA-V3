@@ -136,8 +136,20 @@ $$
 L_k = \frac{\left\|\nabla f(x_k) - \nabla f(x_{k-1})\right\|}{\left\|x_k - x_{k-1}\right\|}
 $$
 
-- Measures gradient smoothness
-- Large values indicate instability or oscillation
+#### ❓ Is a large rate of change in the gradient between consecutive iterations necessarily bad?
+
+Not necessarily. A large gradient update ratio is not inherently problematic, and can even be a sign of healthy progress:
+
+- ✅ **Optimization early stage**: Large gradient changes often reflect rapid progress toward the solution, as the objective function’s curvature naturally produces steep gradients far from the minimum.
+- ✅ **Valid large steps**: When the optimizer (e.g., Levenberg–Marquardt) takes large, valid steps, the gradient magnitude and direction can change significantly while still converging toward a minimum.
+
+However, large gradient changes are concerning if they coincide with:
+
+- ⚠️ Erratic oscillations in the residual or cost function value;
+- ⚠️ A loss of descent direction quality (e.g., a positive dot product between the gradient and the update direction);
+- ⚠️ No sustained reduction in the objective function, even over multiple iterations.
+
+> **Summary**: A large gradient change is not a direct indicator of failure, but rather a signal that must be interpreted alongside descent direction quality, residual reduction, and the optimization stage.
 
 ---
 
