@@ -276,3 +276,50 @@ $$
 <p align="center"><em>Left: Relative RMSE change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
 Measures the relative change in the objective function (reprojection error / RMSE) between consecutive iterations. A value below a given threshold indicates that the cost is no longer improving significantly.
+
+---
+
+### 🔹 Max Gradient Component
+
+$$
+\max_i \left| \mathbf{g}_i \right|
+$$
+
+- Detects poorly converged variables by checking the maximum absolute value of the gradient components.
+- Useful for defining stopping criteria, as a sufficiently small maximum gradient indicates that no single variable has a significant remaining descent direction.
+
+---
+
+## 🔹 4️⃣ Convergence Behavior Tracking
+
+### 🔹 Reprojection Error
+
+$$
+\text{MSE} = \frac{1}{N} \sum \left\| r_i \right\|^2
+$$
+
+Mean Squared Error (MSE) of reprojection residuals. Tracks the objective function value across iterations.
+
+---
+
+### 🔹 Damping Factor ($\lambda$)
+Controls the transition between:
+- **Gauss-Newton**: Large steps with quadratic convergence (when $\lambda$ is small).
+- **Gradient Descent**: Small, stable steps (when $\lambda$ is large).
+
+---
+
+### 🔹 Gain Ratio ($\rho$)
+
+$$
+\rho = \frac{\text{actual reduction}}{\text{predicted reduction}}
+$$
+
+- $\rho > 0$ → **Successful step**: The update reduced the cost function as expected.
+- $\rho < 0$ → **Rejected step**: The update increased the cost function; the damping factor is adjusted.
+
+---
+
+### 🔹 Trial Count
+- Number of attempts (LM iterations) before accepting an update.
+- Reflects the quality of the damping parameter schedule and the overall optimization stability.
