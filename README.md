@@ -295,10 +295,15 @@ $$
 ### 🔹 Reprojection Error
 
 $$
-\text{MSE} = \frac{1}{N} \sum \left\| r_i \right\|^2
+\text{RMSE} = \sqrt{\frac{1}{N} \sum \left\| r_i \right\|^2}
 $$
 
-Mean Squared Error (MSE) of reprojection residuals. Tracks the objective function value across iterations.
+<div align="center">
+  <img src="images/MSE_evolution.png" alt="RMSE evolution across iterations" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>RMSE evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+
+Root Mean Squared Error (RMSE) of reprojection residuals. Tracks the objective function value across iterations.
 
 ---
 
