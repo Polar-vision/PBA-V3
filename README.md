@@ -146,16 +146,16 @@ Not necessarily. A large gradient update ratio is not inherently problematic, an
 However, large gradient changes are concerning if they coincide with:
 
 - ⚠️ Erratic oscillations in the residual or cost function value;
-- ⚠️ A loss of descent direction quality (e.g., a positive dot product between the gradient and the update direction);
+- ⚠️ A loss of descent direction quality (e.g., a positive dot product between the negative gradient and the update direction);
 - ⚠️ No sustained reduction in the objective function, even over multiple iterations.
 
 > **Summary**: A large gradient change is not a direct indicator of failure, but rather a signal that must be interpreted alongside descent direction quality, residual reduction, and the optimization stage.
 
 ---
 
-### 🔹 Descent Direction Quality
+### 🔹 Gradient Direction Quality
 $$
-\cos(\theta_k) = \frac{\nabla f(x_k)^\top \Delta x_k}{\left\|\nabla f(x_k)\right\| \left\|\Delta x_k\right\|}
+\cos(\theta_k) = \frac{-\nabla f(x_k)^\top \Delta x_k}{\left\|\nabla f(x_k)\right\| \left\|\Delta x_k\right\|}
 $$
 
 - $\approx -1$ → ideal descent
