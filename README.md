@@ -232,6 +232,12 @@ This metric measures the alignment between the negative gradient (steepest desce
 - $\approx 0$ → **Ineffective**: The update direction is nearly orthogonal to the gradient, resulting in negligible progress.
 - $< 0$ → **Wrong direction**: The update direction has a positive dot product with the gradient, meaning it is aligned with the ascent direction and will increase the objective function value.
 
+From the plot, we observe a fundamental difference in optimization behavior:
+- **PBA** starts with a very high alignment value, indicating near-ideal descent steps that make maximum use of the gradient. After an initial dip, the efficacy quickly recovers and stabilizes at a high level. This shows that even as the problem becomes more non-linear, PBA’s steps remain consistently aligned with the descent direction, leading to efficient progress.
+- **SBA**’s gradient efficacy, by contrast, drops immediately to near zero and remains extremely low throughout the entire optimization. This means its update directions are nearly orthogonal to the gradient, resulting in very little effective descent progress and explaining its slow convergence, frequent retries, and unstable behavior.
+
+This curve provides a direct explanation for PBA’s superior performance: its updates are consistently effective, while SBA struggles to find meaningful descent directions due to its poor numerical conditioning.
+
 ---
 
 ## 2️⃣ Second-Order Metrics (Hessian / Schur Structure)
