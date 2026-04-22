@@ -253,6 +253,12 @@ $$
 \frac{\left\|\mathbf{x}_k - \mathbf{x}_{k-1}\right\|}{\left\|\mathbf{x}_{k-1}\right\|}
 $$
 
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/relative_state_change.png" alt="Relative state change check in GN/LM optimization" style="height: 280px; width: auto;">
+  <img src="images/rsc_evolution.png" alt="Example" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Left: Relative state change computation flow | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+
 Measures the relative change in the state vector between consecutive iterations. When this value falls below a predefined threshold, the optimization is considered to have converged.
 
 ---
