@@ -134,6 +134,43 @@ Each dataset is organized in the following structure:
 - **Feature Tracks (`Feature.txt`)**  
   Each line represents a feature track, including the number of views, the corresponding image indices, and the (u, v) coordinates in each image.
 
+  ---
+
+## 📊 Data Visualization
+
+To better understand the behavior of different BA methods, we provide **visual comparison of geometry and camera poses**.
+
+---
+
+### 🎯 Visualization Targets
+
+For each dataset, we visualize:
+
+#### 1. Point Cloud
+- Ground Truth (if available)
+- Initial structure
+- After PBA optimization
+- After SBA optimization
+
+#### 2. Camera Poses
+- Ground Truth poses
+- Initial poses
+- Refined poses (PBA)
+- Refined poses (SBA)
+
+---
+
+### 🎨 Visualization Layout (Recommended)
+
+Each dataset can be visualized in a **2×2 comparison layout**:
+
+| Stage | Description |
+|:-----:|:-----------|
+| GT    | Ground truth geometry |
+| Init  | Initial estimation |
+| PBA   | After PBA optimization |
+| SBA   | After SBA optimization |
+
 # 📊 Convergence Analysis Framework
 
 We analyze BA optimization from **three perspectives**:
