@@ -177,3 +177,17 @@ This metric measures the alignment between the negative gradient (steepest desce
 - $\approx 1$ → **Ideal descent**: The update direction is nearly identical to the negative gradient, maximizing the first-order descent gain.
 - $\approx 0$ → **Ineffective**: The update direction is nearly orthogonal to the gradient, resulting in negligible progress.
 - $< 0$ → **Wrong direction**: The update direction has a positive dot product with the gradient, meaning it is aligned with the ascent direction and will increase the objective function value.
+
+---
+
+## 2️⃣ Second-Order Metrics (Hessian / Schur Structure)
+
+### 🔹 Condition Number
+$$
+\kappa(S) = \frac{\sigma_{\max}}{\sigma_{\min}}
+$$
+
+This metric quantifies the **numerical stability** and **ill-conditioning** of the Hessian matrix $\mathbf{H}$ or the Schur complement matrix $S$. It is defined as the ratio between the largest and smallest singular values (or eigenvalues).
+
+- **Large values (→ ill-conditioned)**: Indicates severe numerical instability, potential divergence, or slow convergence. The optimization problem is sensitive to small perturbations.
+- **Small values (→ stable)**: Indicates a well-conditioned problem. The optimization landscape is smooth, and convergence is robust and predictable.
