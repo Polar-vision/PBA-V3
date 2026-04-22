@@ -169,7 +169,7 @@ For each dataset, we visualize:
   <img src="images/cal.txtxyz.png" alt="Optimized by SBA" style="width: 48%; margin-top: 8px;">
 </div>
 
-<p align="center"><em>Visual comparison on the test dataset. Top-left: Ground truth. Top-right: Initial structure. Bottom-left: Optimized by PBA. Bottom-right: Optimized by SBA.</em></p>
+<p align="center"><em>Visual comparison on the test dataset.</em></p>
 
 From the visualization results, we can clearly observe:
 - The **initial reconstruction (top-right)** exhibits significant noise, scattered points, and misaligned camera trajectories, indicating large initial errors.
