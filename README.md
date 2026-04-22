@@ -137,8 +137,9 @@ L_k = \frac{\left\|g(x_{k+1}) - g(x_k)\right\|}{\left\|x_{k+1} - x_k\right\|}
 $$
 
 <div align="center">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity Diagram" width="550">
-  <p align="center"><em>Gradient Lipschitz continuity check in GN/LM optimization</em></p>
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" width="48%" style="display:inline-block;">
+  <img src="images/b_lips_evolution.png" alt="Example" width="48%" style="display:inline-block;">
+  <p align="center"><em>Left: Gradient Lipschitz Continuity Diagram | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 </div>
 
 This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
