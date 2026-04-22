@@ -133,7 +133,7 @@ We analyze BA optimization from **three perspectives**:
 
 ### 🔹 Gradient Lipschitz Continuity
 $$
-L_k = \frac{\left\|g(x_{next}) - g(x_{current})\right\|}{\left\|x_{next} - x_{current}\right\|}
+L_k = \frac{\left\|g(x_{k+1}) - g(x_k)\right\|}{\left\|x_{k+1} - x_k\right\|}
 $$
 
 <div align="center">
@@ -164,8 +164,13 @@ However, large gradient changes are concerning if they coincide with:
 
 ### 🔹 Gradient Direction Quality
 $$
-\cos(\theta_k) = \frac{-g(x_{current})^\top \Delta x}{\left\|g(x_{current})\right\| \left\|\Delta x\right\|}
+\cos(\theta_k) = \frac{-g(x_k)^\top \Delta x_k}{\left\|g(x_k)\right\| \left\|\Delta x_k\right\|}
 $$
+
+<div align="center">
+  <img src="images/gradient_direction.png" alt="Gradient Lipschitz Continuity Diagram" width="550">
+  <p align="center"><em>Gradient Lipschitz continuity check in GN/LM optimization</em></p>
+</div>
 
 This metric measures the alignment between the negative gradient (steepest descent direction) and the actual parameter update direction $\Delta x_k$. It quantifies how effectively the optimization step leverages the gradient to reduce the objective function.
 
