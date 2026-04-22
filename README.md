@@ -137,7 +137,7 @@ L_k = \frac{\left\|\nabla f(x_k) - \nabla f(x_{k-1})\right\|}{\left\|x_k - x_{k-
 $$
 
 <div align="center">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity Diagram" width="750">
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity Diagram" width="450">
   <p align="center"><em>Gradient Lipschitz continuity check in GN/LM optimization</em></p>
 </div>
 
