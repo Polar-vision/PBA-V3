@@ -218,9 +218,17 @@ $$
 \sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_n
 $$
 
-The ordered singular values of the Schur complement matrix $$\( \mathbf{S} \)$$, sorted from largest to smallest. This spectrum is used to detect:
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/singular_spectrum_log_comparison.png" alt="Evolution of singular value spectrum across optimization stages" style="height: 280px; width: auto;">
+  <img src="images/final_iteration_comparison.png" alt="Final iteration singular value spectrum comparison" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Left: Evolution of the singular value spectrum for PBA and SBA across initial, middle, and final optimization stages. Right: Final iteration comparison of singular value spectra and corresponding condition numbers on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+
+The ordered singular values of the Schur complement matrix \( \mathbf{S} \), sorted from largest to smallest. This spectrum is used to detect:
 - **Degeneracy**: Near-zero singular values indicate rank deficiency or an ill-posed problem.
 - **Weakly constrained directions**: Directions with very small singular values correspond to low-curvature, poorly observable modes, which can slow down convergence.
+
+The figures compare the singular value spectra and condition numbers of PBA and SBA at different optimization stages, demonstrating that PBA consistently maintains a better-conditioned system with smaller condition numbers, leading to faster and more robust convergence.
 
 ---
 
