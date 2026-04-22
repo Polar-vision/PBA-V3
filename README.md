@@ -164,7 +164,9 @@ For each dataset, we visualize:
 
 <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 700px; margin: 0 auto;">
   <img src="images/cal.txtG-XYZ.png" alt="Ground Truth" style="width: 48%;">
-
+  <img src="images/cal.txtInit-XYZ.png" alt="Initial Structure" style="width: 48%;">
+  <img src="images/cal.txtparallax.png" alt="Optimized by PBA" style="width: 48%; margin-top: 8px;">
+  <img src="images/cal.txtxyz.png" alt="Optimized by SBA" style="width: 48%; margin-top: 8px;">
 </div>
 
 <p align="center"><em>Visual comparison on the test dataset.</em></p>
