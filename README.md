@@ -2,8 +2,8 @@
 **Convergence Analysis of Parallax Bundle Adjustment (PBA) vs. Sparse Bundle Adjustment (SBA) Across 100+ BA Datasets**
 
 <div align="center">
-  <img src="images/model_description.png" alt="PBA vs. SBA Comparison" width="700">
-  <p align="center"><em>Illustration of the key differences between Parallax Bundle Adjustment (PBA) and Sparse Bundle Adjustment (SBA)</em></p>
+  <img src="images/model_description.png" alt="PBA vs. SBA Comparison" width="900">
+  <p align="center"><em>Illustration of the key differences between PBA and SBA</em></p>
 </div>
 
 The core difference between PBA and traditional SBA lies in the **feature parametrization**:
@@ -11,9 +11,7 @@ The core difference between PBA and traditional SBA lies in the **feature parame
 - **PBA**: Represents features using parallax angles, which significantly improves numerical conditioning, especially for distant points and large-scale environments.
 
 For a detailed introduction to the PBA formulation and its advantages, please refer to:
-> Zhao, L., Huang, S., Sun, Y., Yan, L., & Dissanayake, G. (2015).  
-> *Parallaxba: bundle adjustment using parallax angle feature parametrization*.  
-> The International Journal of Robotics Research, 34(4-5), 493–516.
+> Zhao, L., Huang, S., Sun, Y., Yan, L., & Dissanayake, G. (2015). *Parallaxba: bundle adjustment using parallax angle feature parametrization*. The International Journal of Robotics Research, 34(4-5), 493–516.
 
 ---
 
