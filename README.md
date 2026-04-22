@@ -19,8 +19,7 @@ For a detailed introduction to the PBA formulation and its advantages, please re
 
 PBA-V3 is a research-oriented project for:
 
-🔍 Systematic convergence analysis of Bundle Adjustment (BA) algorithms, focusing on  
-PBA vs. SBA
+🔍 Systematic convergence analysis of Bundle Adjustment (BA) algorithms, focusing on PBA vs. SBA
 
 Unlike standard BA implementations, this project emphasizes:
 - 📊 First-order and second-order optimization behavior
@@ -200,6 +199,12 @@ This metric measures the alignment between the negative gradient (steepest desce
 $$
 \kappa(S) = \frac{\sigma_{\max}}{\sigma_{\min}}
 $$
+
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/condition_number.png" alt="Condition Number" style="height: 280px; width: auto;">
+  <img src="images/condition_number_evolution.png" alt="Example" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Left: Condition number check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
 This metric quantifies the **numerical stability** and **ill-conditioning** of the Hessian matrix $\mathbf{H}$ or the Schur complement matrix $S$. It is defined as the ratio between the largest and smallest singular values (or eigenvalues).
 
