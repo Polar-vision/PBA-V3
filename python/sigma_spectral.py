@@ -494,6 +494,42 @@ def plot_sigma_min_evolution():
     # plt.show()
     print(f"smin evolution saved to {output_pdf}")
 
+def plot_sigma_min_evolution_log_scale():
+    """绘制最小特征值随迭代的演化"""
+    fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
+    
+    iterations_pba = np.arange(0, n_iterations_pba + 1)
+    iterations_sba = np.arange(0, n_iterations_sba + 1)
+    
+    ax.plot(iterations_pba, pba_smin, color=pba_color, linewidth=2.0, 
+            marker='o', markersize=4, markevery=0.1, label='PBA')
+    ax.plot(iterations_sba, sba_smin, color=sba_color, linewidth=2.0, 
+            linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
+    
+    ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
+    ax.set_ylabel("Minimum Singular Value (log scale)", fontsize=14, fontweight='bold')
+    ax.set_yscale('log')
+    ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
+    ax.legend(frameon=False, loc='best', fontsize=14)
+    ax.set_title('Minimum Singular Value Evolution (log scale)', fontsize=14, fontweight='bold')
+    
+    # 标注关键点
+    ax.scatter([0, mid_iter, n_iterations_pba], 
+              [pba_smin[0], pba_smin[mid_iter], pba_smin[-1]], 
+              color=pba_color, s=50, zorder=5, edgecolors='black')
+    ax.scatter([0, mid_iter, n_iterations_sba], 
+              [sba_smin[0], sba_smin[mid_iter], sba_smin[-1]], 
+              color=sba_color, s=50, zorder=5, edgecolors='black')
+    
+    plt.tight_layout()
+    
+    output_pdf = directory + '/smin_evolution_log_scale.pdf'
+    output_png = directory + '/smin_evolution_log_scale.png'
+    plt.savefig(output_pdf, format='pdf', dpi=300, bbox_inches='tight')
+    plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
+    # plt.show()
+    print(f"smin evolution log scale saved to {output_pdf}")
+
 # 可选：创建最大奇异值演化图
 def plot_sigma_max_evolution():
     """绘制最大特征值随迭代的演化"""
@@ -530,6 +566,7 @@ def plot_sigma_max_evolution():
     plt.savefig(output_png, format='png', dpi=300, bbox_inches='tight')
     # plt.show()
     print(f"smax evolution saved to {output_pdf}")
+
 
 # 可选：创建收敛演化图
 def plot_error_evolution():
@@ -840,10 +877,12 @@ def plot_nLimIte_evolution():
 # plot_damping_evolution_log()
 # plot_rho_evolution()
 # plot_sigma_min_evolution()
+# plot_sigma_min_evolution_log_scale()
 # plot_sigma_max_evolution()
+
 # plot_error_evolution()
-plot_binf_evolution()
-plot_binf_evolution_log_scale()
+# plot_binf_evolution()
+# plot_binf_evolution_log_scale()
 # plot_rsc_evolution()
 # plot_rmc_evolution()
 # plot_b_lips_evolution()
