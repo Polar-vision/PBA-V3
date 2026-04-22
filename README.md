@@ -155,7 +155,6 @@ $$
 
 This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
 
----
 
 #### ❓ Is a large rate of change in the gradient between consecutive iterations necessarily bad?
 
