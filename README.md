@@ -133,7 +133,7 @@ We analyze BA optimization from **three perspectives**:
 
 ### 🔹 Gradient Lipschitz Continuity
 $$
-L_k = \frac{\left\|\nabla f(x_k) - \nabla f(x_{k-1})\right\|}{\left\|x_k - x_{k-1}\right\|}
+L_k = \frac{\left\||g(x_{next}) - g(x_{current})\right\||}{\left\||x_{next} - x_{current}\right\||}
 $$
 
 <div align="center">
