@@ -232,11 +232,14 @@ This metric measures the alignment between the negative gradient (steepest desce
 - $\approx 0$ → **Ineffective**: The update direction is nearly orthogonal to the gradient, resulting in negligible progress.
 - $< 0$ → **Wrong direction**: The update direction has a positive dot product with the gradient, meaning it is aligned with the ascent direction and will increase the objective function value.
 
-From the plot, we observe a fundamental difference in optimization behavior:
-- **PBA** starts with a very high alignment value, indicating near-ideal descent steps that make maximum use of the gradient. After an initial dip, the efficacy quickly recovers and stabilizes at a high level. This shows that even as the problem becomes more non-linear, PBA’s steps remain consistently aligned with the descent direction, leading to efficient progress.
-- **SBA**’s gradient efficacy, by contrast, drops immediately to near zero and remains extremely low throughout the entire optimization. This means its update directions are nearly orthogonal to the gradient, resulting in very little effective descent progress and explaining its slow convergence, frequent retries, and unstable behavior.
+As predicted by the condition number analysis:
+- PBA maintains a gradient alignment of ~0.03 throughout the optimization, which is **an order of magnitude higher than SBA** (<0.01).
+- SBA's near-zero alignment means its updates are nearly orthogonal to the descent direction, resulting in negligible progress per iteration and requiring far more iterations to converge.
 
-This curve provides a direct explanation for PBA’s superior performance: its updates are consistently effective, while SBA struggles to find meaningful descent directions due to its poor numerical conditioning.
+> 💡 **Important Note**:
+> A common misconception is that a gradient alignment close to 1 is required for fast convergence. This is only true for pure gradient descent. In Gauss-Newton and Levenberg-Marquardt methods, convergence speed is determined by the **accuracy of the second-order approximation** and the **allowable step size**, not the alignment with the gradient direction.
+> 
+> In bundle adjustment, the Hessian matrix is inherently ill-conditioned, which causes the Newton update direction to be nearly orthogonal to the gradient direction for all methods. PBA's faster convergence stems from its better numerical conditioning, which allows larger, more accurate steps, even though the absolute gradient alignment value is small.
 
 ---
 
