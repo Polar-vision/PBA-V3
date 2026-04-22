@@ -168,11 +168,11 @@ $$
 \cos(\theta_k) = \frac{-g(x_k)^\top \Delta x_k}{\left\|g(x_k)\right\| \left\|\Delta x_k\right\|}
 $$
 
-<div align="center">
-  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" width="48%" style="display:inline-block;">
-  <img src="images/b_dir_valid_evolution.png" alt="Example" width="48%" style="display:inline-block;">
-  <p align="center"><em>Left: Gradient direction quality check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 220px; width: auto;">
+  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 220px; width: auto;">
 </div>
+<p align="center"><em>Left: Gradient direction quality check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
 This metric measures the alignment between the negative gradient (steepest descent direction) and the actual parameter update direction $\Delta x_k$. It quantifies how effectively the optimization step leverages the gradient to reduce the objective function.
 
