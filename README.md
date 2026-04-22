@@ -327,13 +327,20 @@ $$
 \max_i \left| \mathbf{g}_i \right|
 $$
 
-<div align="center">
-  <img src="images/binf_evolution.png" alt="Maximum gradient component evolution across iterations" style="height: 280px; width: auto;">
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/binf_evolution.png" alt="Maximum gradient component evolution across iterations" style="height: 250px; width: auto;">
+  <img src="images/binf_evolution_log_scale.png" alt="Maximum gradient component evolution (log scale) across iterations" style="height: 250px; width: auto;">
 </div>
-<p align="center"><em>Maximum gradient component evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+<p align="center"><em>Left: Maximum gradient component evolution (linear) for PBA vs. SBA on CR1-problem-11-9611. Right: Maximum gradient component evolution (log scale).</em></p>
 
-- Detects poorly converged variables by checking the maximum absolute value of the gradient components.
-- Useful for defining stopping criteria, as a sufficiently small maximum gradient indicates that no single variable has a significant remaining descent direction.
+- Detects poorly converged variables by tracking the maximum absolute value of the gradient components across all parameters.
+- Serves as a robust stopping criterion: a sufficiently small maximum gradient indicates that no single variable has a significant remaining descent direction.
+
+From the plots, we observe that:
+- **PBA** reduces the maximum gradient to near zero in just a few iterations, as clearly seen in both the linear and log-scale plots. This indicates fast, stable progress toward the optimum, with no lingering large gradients.
+- **SBA**, while also converging on the linear scale, exhibits significantly higher residual gradients throughout the process, as highlighted by the log-scale plot. Even after 60 iterations, its maximum gradient remains orders of magnitude larger than PBA’s, reflecting slower progress and a less fully converged state.
+
+This metric directly confirms that PBA achieves both faster and more complete convergence, as it eliminates the largest residual gradients far more effectively than SBA.
 
 ---
 
