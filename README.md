@@ -193,3 +193,20 @@ This metric quantifies the **numerical stability** and **ill-conditioning** of t
 
 - **Large values (→ ill-conditioned)**: Indicates severe numerical instability, potential divergence, or slow convergence. The optimization problem is sensitive to small perturbations.
 - **Small values (→ stable)**: Indicates a well-conditioned problem. The optimization landscape is smooth, and convergence is robust and predictable.
+
+---
+
+### 🔹 Singular Value Spectrum
+$$
+\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_n
+$$
+
+The ordered singular values of the Schur complement matrix \( \mathbf{S} \), sorted from largest to smallest. This spectrum is used to detect:
+- **Degeneracy**: Near-zero singular values indicate rank deficiency or an ill-posed problem.
+- **Weakly constrained directions**: Directions with very small singular values correspond to low-curvature, poorly observable modes, which can slow down convergence.
+
+---
+
+### 🔹 Extreme Singular Values
+- \( \sigma_{\max} \rightarrow \) **Curvature upper bound**: The largest singular value sets an upper bound on the maximum curvature of the objective function, indicating the steepest directions in the optimization landscape.
+- \( \sigma_{\min} \rightarrow \) **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
