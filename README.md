@@ -308,6 +308,16 @@ Root Mean Squared Error (RMSE) of reprojection residuals. Tracks the objective f
 ---
 
 ### 🔹 Damping Factor ($\lambda$)
+
+$$
+\mathbf{H} \leftarrow \mathbf{J}^\top \mathbf{J} + \lambda \cdot \text{diag}(\mathbf{J}^\top \mathbf{J})
+$$
+
+<div align="center">
+  <img src="images/damping_factor_evolution.png" alt="Damping factor evolution across iterations" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Damping factor evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+
 Controls the transition between:
 - **Gauss-Newton**: Large steps with quadratic convergence (when $\lambda$ is small).
 - **Gradient Descent**: Small, stable steps (when $\lambda$ is large).
