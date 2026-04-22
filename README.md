@@ -285,6 +285,11 @@ $$
 \max_i \left| \mathbf{g}_i \right|
 $$
 
+<div align="center">
+  <img src="images/binf_evolution.png" alt="Maximum gradient component evolution across iterations" style="height: 280px; width: auto;">
+</div>
+<p align="center"><em>Maximum gradient component evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
+
 - Detects poorly converged variables by checking the maximum absolute value of the gradient components.
 - Useful for defining stopping criteria, as a sufficiently small maximum gradient indicates that no single variable has a significant remaining descent direction.
 
@@ -339,7 +344,8 @@ $$
 - $\rho > 0$ → **Successful step**: The update reduced the cost function as expected; the step is accepted and $\lambda$ is decreased.
 - $\rho < 0$ → **Rejected step**: The update increased the cost function; the step is rejected and $\lambda$ is increased.
 
-The ratio quantifies how well the linear model approximates the true cost reduction, and directly drives the damping factor adjustment logic.
+The ratio quantifies how well the linear model approximates the true cost reduction, and directly drives the damping factor adjustment logic in the LM algorithm.
+
 ---
 
 ### 🔹 Trial Count
