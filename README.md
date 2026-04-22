@@ -137,8 +137,13 @@ L_k = \frac{\left\|\nabla f(x_k) - \nabla f(x_{k-1})\right\|}{\left\|x_k - x_{k-
 $$
 
 <div align="center">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity Diagram" width="800">
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity Diagram" width="750">
+  <p align="center"><em>Gradient Lipschitz continuity check in GN/LM optimization</em></p>
 </div>
+
+This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
+
+---
 
 #### ❓ Is a large rate of change in the gradient between consecutive iterations necessarily bad?
 
