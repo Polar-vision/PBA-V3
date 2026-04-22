@@ -185,18 +185,29 @@ We analyze BA optimization from **four perspectives**:
 ## 1️⃣ First-Order Metrics (Gradient Behavior)
 
 ### 🔹 Gradient Lipschitz Continuity
+
 $$
 L_k = \frac{\left\|g(x_{k+1}) - g(x_k)\right\|}{\left\|x_{k+1} - x_k\right\|}
 $$
 
-<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
-  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz Continuity" style="height: 240px; width: auto;">
-  <img src="images/b_lips_evolution.png" alt="Example" style="height: 240px; width: auto;">
+<div align="center">
+  <img src="images/lipschitz_flow.png" alt="Gradient Lipschitz continuity in GN/LM optimization" style="height: 240px; width: auto;">
 </div>
-<p align="center"><em>Left: Gradient Lipschitz continuity check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
+<p align="center"><em>Gradient Lipschitz continuity: measuring local gradient smoothness between consecutive steps.</em></p>
 
 This metric quantifies the **local smoothness of the gradient**, measuring how rapidly the gradient changes with respect to the parameters. It directly reflects the curvature of the objective function, which is critical for analyzing optimization stability.
 
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+  <img src="images/gradient_lipschitz.png" alt="Gradient Lipschitz evolution (linear scale)" style="height: 260px; width: auto;">
+  <img src="images/gradient_lipschitz_log_scale.png" alt="Gradient Lipschitz evolution (log scale)" style="height: 260px; width: auto;">
+</div>
+<p align="center"><em>Evolution of the estimated local Lipschitz constant for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset. Left: linear scale. Right: log scale.</em></p>
+
+From the plots, we observe distinct behaviors between the two methods:
+- **PBA** exhibits a large initial Lipschitz estimate, which is expected far from the optimum. The value then drops extremely rapidly, stabilizing at a low level after just a few iterations. This indicates that PBA quickly enters a region of smooth gradient behavior, allowing large, stable Gauss-Newton steps.
+- **SBA**’s Lipschitz estimate, by contrast, decays much more slowly and remains significantly higher throughout the entire optimization. In the later stages, it even shows a resurgence of large values. This persistent high variability in the gradient indicates a more rugged optimization landscape, forcing SBA to take smaller, more cautious steps and remain in the high-damping regime for far longer.
+
+These differences are consistent with our previous observations: PBA’s parametrization leads to a smoother, better-conditioned optimization landscape, which translates directly into more stable gradient behavior and faster convergence.
 
 #### ❓ Is a large rate of change in the gradient between consecutive iterations necessarily bad?
 
