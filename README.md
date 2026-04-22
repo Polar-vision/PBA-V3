@@ -208,5 +208,5 @@ The ordered singular values of the Schur complement matrix \( \mathbf{S} \), sor
 ---
 
 ### 🔹 Extreme Singular Values
-- \( \sigma_{\max} \rightarrow \) **Curvature upper bound**: The largest singular value sets an upper bound on the maximum curvature of the objective function, indicating the steepest directions in the optimization landscape.
-- \( \sigma_{\min} \rightarrow \) **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
+- $$\( \sigma_{\max} \rightarrow \)$$ **Curvature upper bound**: The largest singular value sets an upper bound on the maximum curvature of the objective function, indicating the steepest directions in the optimization landscape.
+- $$\( \sigma_{\min} \rightarrow \)$$ **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
