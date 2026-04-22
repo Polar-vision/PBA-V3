@@ -171,6 +171,21 @@ Each dataset can be visualized in a **2×2 comparison layout**:
 | PBA   | After PBA optimization |
 | SBA   | After SBA optimization |
 
+### Visual Results
+
+<div align="center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+  <img src="images/cal.txtG-XYZ.png" alt="Ground truth structure and camera poses" style="width: 100%;">
+  <img src="images/cal.txtparallax.png" alt="Structure and poses after PBA optimization" style="width: 100%;">
+  <img src="images/cal.txtInit-XYZ.png" alt="Initial structure and camera poses" style="width: 100%;">
+  <img src="images/cal.txtxyz.png" alt="Structure and poses after SBA optimization" style="width: 100%;">
+</div>
+<p align="center"><em>Visual comparison on the test dataset. Top-left: Ground truth geometry and camera poses. Top-right: After PBA optimization. Bottom-left: Initial structure. Bottom-right: After SBA optimization.</em></p>
+
+From the visualizations, we observe that:
+- The initial reconstruction (bottom-left) suffers from severe drift and distortion, with scattered point clouds and inconsistent camera trajectories.
+- Both PBA and SBA are able to refine the initial structure into a coherent scene, but **PBA (top-right)** yields a cleaner, more compact point cloud with fewer outliers and a camera trajectory that closely aligns with the ground truth (top-left).
+- SBA (bottom-right) still exhibits noticeable residual noise in the point cloud and minor misalignments in the camera poses, indicating less effective correction of accumulated errors compared to PBA.
+
 # 📊 Convergence Analysis Framework
 
 We analyze BA optimization from **three perspectives**:
