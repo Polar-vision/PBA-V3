@@ -102,8 +102,8 @@ After downloading, **extract the contents into the `PBA-V3/` directory**.
 The final folder structure should look like this:  
 PBA-V3/  
 ├── datasets/  
-│ ├── KD1-problem-83-48102/  
-│ ├── ...  
+│   ├── KD1-problem-83-48102/  
+│   ├── ...  
 ├── 3rdparty/  
 ├── ba/    
 └── example/    
@@ -113,8 +113,8 @@ PBA-V3/
 > If you need to use a custom dataset path, you can modify it in  
 > [`3rdparty/datapath.h`](./3rdparty/datapath.h).
 
-
 ---
+
 ## 🗂 Data Format
 
 Each dataset is organized in the following structure:
@@ -134,11 +134,11 @@ Each dataset is organized in the following structure:
 - **Feature Tracks (`Feature.txt`)**  
   Each line represents a feature track, including the number of views, the corresponding image indices, and the (u, v) coordinates in each image.
 
-  ---
+---
 
 ## 📊 Data Visualization
 
-To better understand the behavior of different BA methods, we provide **visual comparison of geometry and camera poses**.
+To better understand the behavior and performance of different bundle adjustment methods, we provide **qualitative visual comparisons of 3D point clouds and camera poses**.
 
 ---
 
@@ -162,29 +162,32 @@ For each dataset, we visualize:
 
 ### 🎨 Visualization Layout (Recommended)
 
-Each dataset can be visualized in a **2×2 comparison layout**:
+Each dataset is visualized in a **2×2 comparison layout**:
 
-| Stage | Description |
-|:-----:|:-----------|
-| GT    | Ground truth geometry |
-| Init  | Initial estimation |
-| PBA   | After PBA optimization |
-| SBA   | After SBA optimization |
+| Position       | Description                          |
+|:-------------:|:------------------------------------|
+| Top-left      | Ground truth geometry & camera poses |
+| Top-right     | Initial reconstruction               |
+| Bottom-left   | Optimized by PBA                     |
+| Bottom-right  | Optimized by SBA                     |
+
+---
 
 ### Visual Results
 
-<div align="center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-  <img src="images/cal.txtG-XYZ.png" alt="Ground truth structure and camera poses" style="width: 100%;">
-  <img src="images/cal.txtparallax.png" alt="Structure and poses after PBA optimization" style="width: 100%;">
-  <img src="images/cal.txtInit-XYZ.png" alt="Initial structure and camera poses" style="width: 100%;">
-  <img src="images/cal.txtxyz.png" alt="Structure and poses after SBA optimization" style="width: 100%;">
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 700px; margin: 0 auto;">
+  <img src="images/cal.txtG-XYZ.png" alt="Ground Truth" style="width: 48%;">
+  <img src="images/cal.txtInit-XYZ.png" alt="Initial Structure" style="width: 48%;">
+  <img src="images/cal.txtparallax.png" alt="Optimized by PBA" style="width: 48%; margin-top: 8px;">
+  <img src="images/cal.txtxyz.png" alt="Optimized by SBA" style="width: 48%; margin-top: 8px;">
 </div>
-<p align="center"><em>Visual comparison on the test dataset. Top-left: Ground truth geometry and camera poses. Top-right: After PBA optimization. Bottom-left: Initial structure. Bottom-right: After SBA optimization.</em></p>
 
-From the visualizations, we observe that:
-- The initial reconstruction (bottom-left) suffers from severe drift and distortion, with scattered point clouds and inconsistent camera trajectories.
-- Both PBA and SBA are able to refine the initial structure into a coherent scene, but **PBA (top-right)** yields a cleaner, more compact point cloud with fewer outliers and a camera trajectory that closely aligns with the ground truth (top-left).
-- SBA (bottom-right) still exhibits noticeable residual noise in the point cloud and minor misalignments in the camera poses, indicating less effective correction of accumulated errors compared to PBA.
+<p align="center"><em>Visual comparison on the test dataset. Top-left: Ground truth. Top-right: Initial structure. Bottom-left: Optimized by PBA. Bottom-right: Optimized by SBA.</em></p>
+
+From the visualization results, we can clearly observe:
+- The **initial reconstruction (top-right)** exhibits significant noise, scattered points, and misaligned camera trajectories, indicating large initial errors.
+- Both PBA and SBA effectively optimize the noisy initial structure, but **PBA (bottom-left)** produces a significantly cleaner, more compact point cloud with fewer outliers and camera poses that closely match the ground truth.
+- In contrast, **SBA (bottom-right)** retains noticeable residual noise and minor inconsistencies in both the 3D structure and camera trajectories, demonstrating less accurate error elimination and convergence behavior compared to PBA.
 
 # 📊 Convergence Analysis Framework
 
