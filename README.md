@@ -169,8 +169,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 220px; width: auto;">
-  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 220px; width: auto;">
+  <img src="images/gradient_direction.png" alt="Gradient Direction Quality" style="height: 320px; width: auto;">
+  <img src="images/b_dir_valid_evolution.png" alt="Example" style="height: 320px; width: auto;">
 </div>
 <p align="center"><em>Left: Gradient direction quality check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
