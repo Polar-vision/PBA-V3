@@ -234,10 +234,10 @@ The figures compare the singular value spectra and condition numbers of PBA and 
 
 ### 🔹 Extreme Singular Values
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/min_singular_value_evolution.png" alt="Minimum singular value evolution" style="height: 280px; width: auto;">
-  <img src="images/max_singular_value_evolution.png" alt="Maximum singular value evolution" style="height: 280px; width: auto;">
+  <img src="images/smin_evolution.png" alt="Minimum singular value evolution" style="height: 280px; width: auto;">
+  <img src="images/smax_evolution.png" alt="Maximum singular value evolution" style="height: 280px; width: auto;">
 </div>
-<p align="center"><em>Left: Minimum singular value evolution across iterations for PBA and SBA. Right: Maximum singular value evolution across iterations for PBA and SBA.</em></p>
+<p align="center"><em>Left: Minimum singular value evolution. Right: Maximum singular value evolution (PBA vs. SBA on CR1-problem-11-9611).</em></p>
 
 - $$\( \sigma_{\max} \rightarrow \)$$ **Curvature upper bound**: The largest singular value sets an upper bound on the maximum curvature of the objective function, indicating the steepest directions in the optimization landscape.
 - $$\( \sigma_{\min} \rightarrow \)$$ **Observability**: The smallest non-zero singular value quantifies the strength of the weakest constraint, directly relating to the problem’s observability and numerical stability.
