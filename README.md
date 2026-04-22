@@ -365,9 +365,17 @@ $$
 </div>
 <p align="center"><em>Damping factor evolution across iterations for PBA vs. SBA on the <strong>CR1-problem-11-9611</strong> dataset.</em></p>
 
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+  <img src="images/damping_factor_evolution.png" alt="Damping factor evolution across iterations" style="height: 250px; width: auto;">
+  <img src="images/damping_factor_evolution_log_scale.png" alt="Damping factor evolution (log scale) across iterations" style="height: 250px; width: auto;">
+</div>
+<p align="center"><em>Left: Damping factor evolution (linear) for PBA vs. SBA on CR1-problem-11-9611. Right: Damping factor evolution (log scale).</em></p>
+
 Controls the transition between:
 - **Gauss-Newton**: Large steps with quadratic convergence (when $\lambda$ is small).
 - **Gradient Descent**: Small, stable steps (when $\lambda$ is large).
+
+In the plot, both methods start with a large damping factor, but PBA reduces it to near zero much faster. This shows that PBA rapidly enters the Gauss-Newton regime, where it can take large, efficient steps with quadratic convergence. SBA, by contrast, remains in a high-damping state for longer, leading to slower progress.
 
 ---
 
