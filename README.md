@@ -314,7 +314,7 @@ These spectral differences confirm that PBA’s parallax-based parametrization e
 
 ### 🔹 Extreme Singular Values
 
-Singular values of the normal matrix $$\( \mathbf{J}^\top\mathbf{J} \)$$ reveal key properties of the optimization landscape and numerical conditioning.
+Singular values of the Schur complement matrix $$\( \mathbf{S} \)$$ reveal key properties of the optimization landscape and numerical conditioning.
 
 <div align="center">
   <img src="images/smax_evolution.png" alt="Maximum singular value evolution" style="height: 280px; width: auto;">
