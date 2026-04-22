@@ -242,8 +242,8 @@ $$
 $$
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-  <img src="images/condition_number.png" alt="Condition Number" style="height: 250px; width: auto;">
-  <img src="images/condition_number_evolution.png" alt="Example" style="height: 250px; width: auto;">
+  <img src="images/condition_number.png" alt="Condition Number" style="height: 230px; width: auto;">
+  <img src="images/condition_number_evolution.png" alt="Example" style="height: 230px; width: auto;">
 </div>
 <p align="center"><em>Left: Condition number check in GN/LM optimization | Right: Example on the <strong>CR1-problem-11-9611</strong> dataset</em></p>
 
