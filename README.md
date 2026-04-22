@@ -269,7 +269,12 @@ The ordered singular values of the Schur complement matrix $$\( \mathbf{S} \)$$,
 - **Degeneracy**: Near-zero singular values indicate rank deficiency or an ill-posed problem.
 - **Weakly constrained directions**: Directions with very small singular values correspond to low-curvature, poorly observable modes, which can slow down convergence.
 
-The figures compare the singular value spectra and condition numbers of PBA and SBA at different optimization stages, demonstrating that PBA consistently maintains a better-conditioned system with smaller condition numbers, leading to faster and more robust convergence.
+From the plots, we observe clear differences between PBA and SBA:
+- **Initial stage**: At the start of optimization, SBA shows a slightly higher minimum singular value, but its spectrum decays much more steeply across the mid-to-low end. PBA, by contrast, maintains a flatter, more balanced spectrum throughout the range, indicating a more even distribution of curvature.
+- **Middle and final stages**: As iterations progress, the gap widens dramatically. PBA’s spectrum remains well-conditioned, with a significantly higher tail (minimum singular values) than SBA. SBA’s spectrum decays rapidly, leading to very small singular values at the tail, which introduce ill-posed directions into the optimization.
+- **Final iteration comparison**: PBA completes in only 32 iterations with a condition number of \( 5.71 \times 10^6 \), while SBA requires 62 iterations and ends with a much higher condition number of \( 6.72 \times 10^7 \). This directly quantifies PBA’s superior numerical conditioning, which leads to faster, more stable convergence.
+
+These spectral differences confirm that PBA’s parallax-based parametrization effectively eliminates the ill-posed directions present in SBA, resulting in a more balanced singular value spectrum and a significantly better-conditioned optimization problem.
 
 ---
 
