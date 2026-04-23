@@ -43,10 +43,8 @@
 				posei = pa+6*nM+3;
 				posek = pa+6*nN+3;
 
-				//??��????��??????????
 				pti2k[0] = posek[0]-posei[0];	pti2k[1] = posek[1]-posei[1];	pti2k[2] = posek[2]-posei[2];	
 
-				//??��??????????��????
 				ptXUnit[0] = sin( pb[0] ) * cos( pb[1] );
 				ptXUnit[1] = sin( pb[1] );
 				ptXUnit[2] = cos( pb[0] ) * cos( pb[1] );
@@ -80,12 +78,9 @@
 				posek = pa + nN *6 + 3;
 				posei = pa + nM *6 + 3;
 
-				//??��????��??????????
 				pti2k[0] = posek[0] - posei[0];		pti2k[1] = posek[1] - posei[1];		pti2k[2] = posek[2] - posei[2];
-				//??��??????��??????????
 				pti2l[0] = posel[0] - posei[0];		pti2l[1] = posel[1] - posei[1];		pti2l[2] = posel[2] - posei[2];
 				
-				//XUnit ??��??????????��????
 				ptXUnit[0] = sin( pb[0] ) * cos( pb[1] );
 				ptXUnit[1] = sin( pb[1] );
 				ptXUnit[2] = cos( pb[0] ) * cos( pb[1] );
@@ -117,9 +112,6 @@
 	}
 
 	//compute Jacobian for each image point
-	//pPA pPB,uv?????????????????????
-	//pAM uv????��?????��???????????
-	//pAA uv???��?????��???????????
 	void PBA::pba_jacobianEachPts(double* KR, double* KdA, double *KdB, double* KdG, double* pa, double* ppt, int nM, int nN, int nP,double* pAM, double* pAA, double* pPA, double* pPB)
 	{
 		double matXj[3];
@@ -181,22 +173,19 @@
 			matDuvDxyt[4] = bs * 1 / matxyt[2]; 
 			matDuvDxyt[5] = -bs * matxyt[1] / (matxyt[2] * matxyt[2]);
 			
-			//pKdG:pKR???????omega??????
-			//pKdB:pKR???????phi??????
-			//pKdA:pKR???????kappa??????
 			//camera angles
 			pKdG = KdG + nP*9;
-			matDxytDRG[0] =  pKdG[0]*matXj[0] + pKdG[1]*matXj[1] + pKdG[2]*matXj[2];//xyt????omega??????
+			matDxytDRG[0] =  pKdG[0]*matXj[0] + pKdG[1]*matXj[1] + pKdG[2]*matXj[2];//omega
 			matDxytDRG[1] =  pKdG[3]*matXj[0] + pKdG[4]*matXj[1] + pKdG[5]*matXj[2];
 			matDxytDRG[2] =  pKdG[6]*matXj[0] + pKdG[7]*matXj[1] + pKdG[8]*matXj[2];
 
 			pKdB = KdB + nP*9;
-			matDxytDRB[0] =  pKdB[0]*matXj[0] + pKdB[1]*matXj[1] + pKdB[2]*matXj[2];//xyt????phi??????
+			matDxytDRB[0] =  pKdB[0]*matXj[0] + pKdB[1]*matXj[1] + pKdB[2]*matXj[2];//phi
 			matDxytDRB[1] =  pKdB[3]*matXj[0] + pKdB[4]*matXj[1] + pKdB[5]*matXj[2];
 			matDxytDRB[2] =  pKdB[6]*matXj[0] + pKdB[7]*matXj[1] + pKdB[8]*matXj[2];
 
 			pKdA = KdA + nP*9;
-			matDxytDRA[0] =  pKdA[0]*matXj[0] + pKdA[1]*matXj[1] + pKdA[2]*matXj[2];//xyt????kappa??????
+			matDxytDRA[0] =  pKdA[0]*matXj[0] + pKdA[1]*matXj[1] + pKdA[2]*matXj[2];//kappa
 			matDxytDRA[1] =  pKdA[3]*matXj[0] + pKdA[4]*matXj[1] + pKdA[5]*matXj[2];
 			matDxytDRA[2] =  pKdA[6]*matXj[0] + pKdA[7]*matXj[1] + pKdA[8]*matXj[2];
 
@@ -835,7 +824,7 @@
 		int nvis, nuis, itno, issolved, nobs, nvars, nMaxS, nu=2, stop=0;
 
 		double *p = m_motstruct, *x = m_imgpts;	//p pointer refers to unknown parameters, x pointer refers to image coordinate	
-		double *U, *V, *W, *e, *eab, *E, *S, *dp, *IV; // pointers into U V W E S IV
+		double *U, *V, *W, *e, *eab, *eab_pre, *E, *S, *dp, *IV; // pointers into U V W E S IV
 		double *pa = NULL, *pb = NULL, *ea, *eb, *dpa, *dpb, *hx, *Ex, *rx, *pdp; // pointers into p, jac, eab and dp respectively 	double *Ex, *rx; 
 		double initialerror = 0, error = 0;
 		int    nIter = 0, nLinear = 0;
@@ -869,6 +858,7 @@
 		IV	=	(double *)malloc(n*Vsz*sizeof(double));
 		e	=	(double *)malloc(nobs*sizeof(double));
 		eab	=	(double *)malloc(nvars*sizeof(double));
+		eab_pre = (double *)malloc(nvars*sizeof(double));
 		E	=	(double *)malloc(m*cnp*sizeof(double));		
 		dp	=	(double *)malloc(nvars*sizeof(double));
 		hx	=	(double *)malloc(nobs*sizeof(double));	
@@ -912,6 +902,8 @@
 
 		VectorXd sigma_spectral;
 		double S_sigma_max,S_sigma_min,S_cond,rho_ = 0, relative_state_change = 0, relative_mse_change = 0;
+		double Lips = 0, descent_dir_valid = 0;
+
 		// m_nMaxIter = 2;
 		for(itno=0; itno<m_nMaxIter && !stop; ++itno)
 		{
@@ -929,7 +921,8 @@
 				pba_jacobian_RobustKernel(p, m_archor, &Uidxij,e,U,ea,V, eb, W, n, m, m_n2Dprojs, m_photo, m_feature );
 			else
 				pba_jacobian(p, m_archor, &Uidxij,e,U,ea,V, eb, W, n, m, m_n2Dprojs, m_photo, m_feature );
-			t2 = clock();	
+				
+			
 			// convertUtoDenseMatrix(U,&Uidxij,Upgm.c_str(),Utxt.c_str());
 			// convertHtoDenseMatrix(U,V,W,Hpgm.c_str(),Htxt.c_str());
 
@@ -951,6 +944,7 @@
 				// Eigen::MatrixXd S_full = Eigen::MatrixXd::Zero(fullSize,fullSize);
 	
 				ba_constructSLM(S, E, U, IV, W, ea, eb, Sidxij, mu);
+				t2 = clock();	
 				
 				//Solve linear equation
 				//set CSS format using S matrix
@@ -1042,23 +1036,20 @@
 						}
 						error = pdp_eL2/nvis;
 					}				
-
-
-					for(i=0, dL=0.0; i<nvars; ++i)
+					for(i=0, dL=0.0; i<nvars; ++i){
 						dL+=dp[i]*(mu*dp[i]+eab[i]);  //low  predicted reduction
 						//attention: eab = -g
-
+					}
 					dF=p_eL2-pdp_eL2;//actual reduction
 
-
-					if(itno == 0){
+					if(itno == 0 && nLmIterations == 1){
 						sigma_spectral = convertStoDenseMatrix(S,Sidxij,Spgm.c_str(),Stxt.c_str());
 						S_sigma_max = sigma_spectral[0];
 						S_sigma_min = sigma_spectral[sigma_spectral.size() - 1];
 						S_cond = S_sigma_max / S_sigma_min;
 						rho_ = dF/dL;
-						fprintf(fp3,"%f %f %f %f %f %f %f %f %f\n", initialerror, rho_, mu, S_sigma_max, S_sigma_min, S_cond, 
-							eab_inf, relative_state_change, relative_mse_change);
+						fprintf(fp3,"%f %f %f %f %f %f %f %f %f %f ", initialerror, rho_, mu, S_sigma_max, S_sigma_min, S_cond, 
+							eab_inf, relative_state_change, relative_mse_change, Lips);
 						for(int k=0;k<sigma_spectral.size()-1;++k){
 							fprintf(fp4,"%f ", sigma_spectral[k]);
 						}
@@ -1096,6 +1087,30 @@
 							fprintf( fpRe, "Iteration %d  Error  %0.8lf\n", itno, pdp_eL2/nvis );
 						nIter++;
 
+						//计算梯度的Lipschitz连续性与梯度方向有效性
+						double dot_grad_dp = 0.0, grad_sq = 0.0, dp_sq = 0.0, grad_norm, dp_norm;
+						for(i=0; i<nvars; ++i){
+							dot_grad_dp += eab[i] * dp[i];
+							grad_sq += eab[i] * eab[i];
+							dp_sq += dp[i] * dp[i];
+						}
+						grad_norm = sqrt(grad_sq);
+						dp_norm = sqrt(dp_sq);
+						descent_dir_valid = dot_grad_dp / (grad_norm * dp_norm);
+
+						//已经算出下一个点处的梯度eab_pre
+						if(itno > 0){
+							double grad_diff_sq = 0.0, grad_diff_norm;
+							for(i=0; i<nvars; ++i){
+								double diff = eab[i] - eab_pre[i];//相邻两次迭代的负梯度差
+								grad_diff_sq += diff * diff;
+								//attention: eab = -g
+							}
+							grad_diff_norm = sqrt(grad_diff_sq);
+							Lips = grad_diff_norm / dp_norm;
+						}
+						if(itno == 0)
+							fprintf(fp3,"%f %d\n", descent_dir_valid, nLmIterations);
 						break;
 					}
 					else
@@ -1108,7 +1123,7 @@
 				
 			if(p_eL2<=eps3_sq) stop=5; //total reprojection error is small
 
-			if(!stop){
+			if(!stop && itno > 0){
 				sigma_spectral = convertStoDenseMatrix(S,Sidxij,Spgm.c_str(),Stxt.c_str());
 				S_sigma_max = sigma_spectral[0];
 				S_sigma_min = sigma_spectral[sigma_spectral.size() - 1];
@@ -1117,12 +1132,15 @@
 				// double H_inf = compute_H_inf_norm(U, V, W, mu);
 				// double H_lambda_max, H_lambda_min, H_cond;
 				// computeHMaxSingularValue(U, V, W, H_lambda_max, H_lambda_min, H_cond);
-				fprintf(fp3,"%f %f %f %f %f %f %f %f %f\n", pdp_eL2/nvis, rho_, mu, S_sigma_max, S_sigma_min, S_cond,
-					eab_inf, relative_state_change, relative_mse_change);
+				fprintf(fp3,"%f %f %f %f %f %f %f %f %f %f %f %d\n", pdp_eL2/nvis, rho_, mu, S_sigma_max, S_sigma_min, S_cond,
+					eab_inf, relative_state_change, relative_mse_change, Lips, descent_dir_valid, nLmIterations);
 				for(int k=0;k<sigma_spectral.size()-1;++k){
 					fprintf(fp4,"%f ", sigma_spectral[k]);
 				}
 				fprintf(fp4,"%f\n", sigma_spectral[sigma_spectral.size()-1]);
+			}
+			for(i=0; i<nvars; ++i){
+				eab_pre[i] = eab[i];
 			}
 		}
 		if(itno>=m_nMaxIter)
@@ -3995,9 +4013,6 @@ void PBA::pba_readAndInitialize(char *camsfname, char *ptsfname,char *calibfname
 */
 
 
-
-
-/*???????��??*/
 bool PBA::pba_initializeMainArchor( 
 	double* imgpts,	
 	double* camera,	
@@ -4049,7 +4064,7 @@ bool PBA::pba_initializeMainArchor(
 		return false;
 }
 
-/*???????��??*/
+
 bool PBA::pba_initializeAssoArchor( 
 	double* imgpts,
 	int* photo,
@@ -4146,7 +4161,6 @@ bool PBA::pba_initializeAssoArchor(
 	return true;//dW2??/varphi_j;dw=feature[2]??/omega_j;????????????dW2?????????tmp?��????IJRR??BA????��?
 }
 
-/*?????????��??*/
 bool PBA::pba_initializeOtheArchors( 
 	double* imgpts,
 	int* photo,
