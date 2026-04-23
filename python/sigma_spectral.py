@@ -800,20 +800,20 @@ def plot_b_lips_evolution_log_scale():
             marker='o', markersize=4, markevery=0.1, label='PBA')
     ax.plot(iterations_sba, sba_b_lips[1:], color=sba_color, linewidth=2.0, 
             linestyle='--', marker='s', markersize=4, markevery=0.1, label='SBA')
-    
+    ax.set_yscale('log')
     ax.set_xlabel("Iteration", fontsize=14, fontweight='bold')
     ax.set_ylabel("Gradient Lipschitz (log scale)", fontsize=14, fontweight='bold')
-    ax.set_yscale('log')
+    
     ax.grid(True, linestyle=':', linewidth=0.3, alpha=0.3)
     ax.legend(frameon=False, loc='best', fontsize=14)
     ax.set_title('Gradient Lipschitz (log scale)', fontsize=14, fontweight='bold')
     
     # 标注关键点
     ax.scatter([mid_iter, n_iterations_pba], 
-              [pba_b_lips[mid_iter], pba_rmc[-1]], 
+              [pba_b_lips[mid_iter], pba_b_lips[-1]], 
               color=pba_color, s=50, zorder=5, edgecolors='black')
     ax.scatter([mid_iter, n_iterations_sba], 
-              [sba_b_lips[mid_iter], sba_rmc[-1]], 
+              [sba_b_lips[mid_iter], sba_b_lips[-1]], 
               color=sba_color, s=50, zorder=5, edgecolors='black')
     
     plt.tight_layout()
